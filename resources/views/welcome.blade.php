@@ -1,7 +1,4 @@
-@include('layouts/includes/header')
-<body class="medical-lp">
-
-  <!--Navigation & Intro-->
+@include('includes.head')
   <header>
 
     <!--Navbar-->
@@ -39,9 +36,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{{route('login')}}">Login</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('register')}}">Register</a>
-            </li>
+            <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Register </a>
+
+              <div class="dropdown-menu dropdown-menu-right" style='background: #018BAF' aria-labelledby="navbarDropdown">
+                <a class="nav-link dropdown-item" dropdown-toggle='dropdown' href="{{ route('register') }}">{{ __('Register as User') }}</a>
+                <a class="nav-link dropdown-item" dropdown-toggle='dropdown' href="/">{{ __('Register as Doctor') }}</a>
+              </div>
+          </li>
           </ul>
         </div>
       </div>
@@ -1034,4 +1036,4 @@
     </div>
 
   </main>
-@include('layouts.includes.footer')
+@include('includes.footer')
