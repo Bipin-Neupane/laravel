@@ -1,0 +1,16 @@
+.navbar-nav li {
+    border-radius: 0.25rem !important;
+    margin-right: 5px;
+}
+
+li.active {
+    background: #fff;
+}
+
+li.active a {
+    color: #333 !important;
+}
+
+.ml-2-half {
+    margin-left: 2.5rem;
+}

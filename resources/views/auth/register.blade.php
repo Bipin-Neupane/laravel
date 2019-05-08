@@ -36,6 +36,16 @@
                 </div>
 
                 <div class="md-form">
+                    <i class="fas fa-user-tag prefix"></i>
+                    <select class="mdb-select md-form ml-2-half" id='role' name='role''>
+                        <option value="doctor">Doctor</option>
+                        <option value="patient">Patient</option>
+                    </select>
+                    <label class="mdb-main-label" style=' margin-top: -25px;'>Register As</label>
+                </div>
+
+
+                <div class="md-form">
                     <i class="fas fa-lock prefix"></i>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                         name="password" required autocomplete="off">

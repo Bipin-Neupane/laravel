@@ -9,5 +9,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{asset('css/mdb.min.css')}}" rel="stylesheet">
+  <link href="{{asset('css/style.css')}}" rel="stylesheet">
 </head>
 <body>
