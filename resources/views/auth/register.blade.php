@@ -37,7 +37,7 @@
 
                 <div class="md-form">
                     <i class="fas fa-user-tag prefix"></i>
-                    <select class="mdb-select md-form ml-2-half" id='role' name='role''>
+                    <select class="mdb-select md-form ml-2-half" id='roles' name='roles'>
                         <option value="doctor">Doctor</option>
                         <option value="patient">Patient</option>
                     </select>
