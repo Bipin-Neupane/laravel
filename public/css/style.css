@@ -1,3 +1,8 @@
+.top-nav-collapse {
+    /* background-color: #3e4551; */
+    background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+}
+
 .navbar-nav li {
     border-radius: 0.25rem !important;
     margin-right: 5px;

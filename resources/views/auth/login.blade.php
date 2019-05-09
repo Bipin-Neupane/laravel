@@ -22,7 +22,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                            <label for="orangeForm-email">Your email</label>
+                            <label for="email">Your email</label>
                         </div>
 
                         <div class="md-form">
@@ -30,7 +30,7 @@
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
                                 autocomplete="current-password">
-                            <label for="orangeForm-pass">Your password</label>
+                            <label for="password">Your password</label>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

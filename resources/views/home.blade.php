@@ -1,24 +1,11 @@
-@extends('layouts.app')
+@include('includes.head')
 
-@section('content')
-@include('layouts.partials.authHeader')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+@if (Auth::user()->user_type === 'doctor')
+@include('layouts.doctor.index')
+@endif
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@if (Auth::user()->user_type === 'patient')
+@include('layouts.patient.index')
+@endif
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+@include('includes.footer')
