@@ -12,10 +12,19 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string
      */
+
+    /**
+     * Get the guards that were checked.
+     *
+     * @return array
+     */
+    public function guards()
+    {
+        return $this->guards;
+    }
+
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
+        return route('login');
     }
 }
