@@ -105,6 +105,7 @@
 <script>
   // Animation init
     new WOW().init();
+    // Select initiate
     $(document).ready(function() {
       $('.mdb-select').materialSelect();
     });

@@ -7,6 +7,17 @@
       </button>
       <div id='navCol' class="collapse navbar-collapse">
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
+          @if (Auth::user()->user_type === 'patient')
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor's Category</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">LInk</a>
+              <a href="#" class="dropdown-item">LInk</a>
+              <a href="#" class="dropdown-item">LInk</a>
+              <a href="#" class="dropdown-item">LInk</a>
+            </div>
+          </li>
+          @endif
           <li class="nav-item dropdown notifications-nav">
             <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -44,9 +55,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-secondary"
               aria-labelledby="navbarDropdownMenuLink-55">
+              <a class="dropdown-item" href="#">My account</a>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">Log Out</a>
-              <a class="dropdown-item" href="#">My account</a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
               </form>
