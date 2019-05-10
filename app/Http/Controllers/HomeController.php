@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $email = Auth::user()->email;
+        if (Auth::user()->user_type === 'doctor') {
+            $users = DB::table('doctors')->where('email', $email)->first();
+            // dd($users);
+        }
+        if (Auth::user()->user_type === 'patient') {
+            $users = DB::table('patients')->where('email', $email)->first();
+        }
+        return view('home')->with('data', $users);
     }
 }
