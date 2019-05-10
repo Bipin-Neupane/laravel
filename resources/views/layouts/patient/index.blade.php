@@ -1,2 +1,2 @@
-@include('layouts.partials.authHeader')
+@include('layouts.partials.header')
 patient

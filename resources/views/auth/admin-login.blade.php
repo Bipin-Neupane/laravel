@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.partials.authHeader')
+@include('includes.header')
 <div class="login py-4" style='background: url({{url('img/aaa.jpg')}}) center center no-repeat; background-size:cover;'>
     <div class="container">
         <div class="row">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.partials.authHeader')
+@include('includes.header')
 <div class="login py-4" style='background: url({{url('img/aaa.jpg')}}) center center no-repeat; background-size:cover;'>
     <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
         <div class="card wow fadeIn" data-wow-delay="0.3s">
