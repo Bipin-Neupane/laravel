@@ -29,7 +29,6 @@ class HomeController extends Controller
         $email = Auth::user()->email;
         if (Auth::user()->user_type === 'doctor') {
             $users = DB::table('doctors')->where('email', $email)->first();
-            // dd($users);
         }
         if (Auth::user()->user_type === 'patient') {
             $users = DB::table('patients')->where('email', $email)->first();

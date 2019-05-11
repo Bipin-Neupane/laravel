@@ -15,12 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'Auth\DoctorRegisterController@update')->name('doctor');
+
+Auth::routes();
 
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@adminLogin')->name('admin.login.submit');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
+

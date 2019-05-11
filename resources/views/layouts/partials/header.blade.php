@@ -11,10 +11,8 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor's Category</a>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">LInk</a>
-              <a href="#" class="dropdown-item">LInk</a>
-              <a href="#" class="dropdown-item">LInk</a>
-              <a href="#" class="dropdown-item">LInk</a>
+              <a href="#" class="dropdown-item">PHYSICIAN</a>
+              <a href="#" class="dropdown-item">PSYCHIATRIST</a>
             </div>
           </li>
           @endif
