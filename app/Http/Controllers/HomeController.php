@@ -35,4 +35,18 @@ class HomeController extends Controller
         }
         return view('home')->with('data', $users);
     }
+
+    public function category($category_name)
+    {
+        if ($category_name === 'physician') {
+            $type = 0;
+        }
+        else {
+            $type = 1;
+        }
+
+        $category = DB::table('doctors')->where('category', $type)->get();
+        return view('category', compact("category"));
+    }
+    
 }
