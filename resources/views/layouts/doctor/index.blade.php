@@ -67,7 +67,7 @@
                   <input type="file" name='citizenship' id='citizenship'>
                 </div>
                 <div class="file-path-wrapper">
-                  <input class="file-path validate disabled" type="text" placeholder="Upload your citizenship">
+                  <input class="file-path validate" disabled type="text" placeholder="Upload your citizenship">
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@
                   <input type="file" name='certificate' id='certificate'>
                 </div>
                 <div class="file-path-wrapper">
-                  <input class="file-path validate disabled" type="text"
+                  <input class="file-path validate" disabled type="text"
                     placeholder="Upload your license[Doctor certificate]">
                 </div>
               </div>
@@ -104,5 +104,5 @@
 </div>
 @endif
 @else
-doctor
+@include('layouts.doctor.main');
 @endif

@@ -19,3 +19,19 @@ li.active a {
 .ml-2-half {
     margin-left: 2.5rem;
 }
+
+#user_manual ul {
+    list-style: none;
+}
+
+#user_manual ul li {
+    margin-bottom: 10px;
+}
+
+#user_manual ul li::after {
+    content: "";
+    display: block;
+    height: 5px;
+    background: white;
+    margin-top: 10px;
+}

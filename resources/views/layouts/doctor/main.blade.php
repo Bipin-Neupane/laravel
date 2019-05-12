@@ -1,26 +1,12 @@
-@include('layouts.partials.header')
-
 <div class="text-white text-center py-5" id="intro" style="background: #3147A4">
     <div class="container px-5">
         <h1 style="font-family:Arial, Helvetica, sans-serif">
-            ASK A DOCTOR ONLINE
+            Welcome {{ucfirst($data->first_name)}} {{ucfirst($data->last_name)}}
         </h1>
-        <p class="lead"> Get treatment from doctor online. Select doctors based on your health issues for online
-            consultation through a simple chat or audio chat or video chat.</p>
-    </div>
-</div>
-
-<div class="container py-5" is="search">
-    <div class="container-fluid lead">
-        <form action="#" method="POST" role="search" class="mx-auto w-50">
-            @csrf
-            <div class="input-group d-flex">
-                <input type="text" class="form-control align-self-center" name="q" placeholder="Search doctors">
-                <button type="submit" class="btn btn-md btn-default align-self-center my-0">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </form>
+        <p class="lead"> Get paid assisiting patients through online communication. We improve based on your dedication
+            towards
+            patients.
+        </p>
     </div>
 </div>
 
@@ -40,7 +26,7 @@
                         based on
                         patient's rating, you will be provided with best reccommendations.
                     </p>
-                    <img src="{{asset('img/aaa.jpg')}}" class="img-fluid" alt="">
+                    <img src="{{asset('img/step1.png')}}" class="img-fluid" alt="">
                 </li>
                 <li>
                     <p> <strong>Step 3:</strong> Choose one who you want to be your caretaker. You will be asked to
