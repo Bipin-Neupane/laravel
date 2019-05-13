@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark blue-gradient">
+  <nav class="navbar navbar-expand-lg navbar-light white">
     <div class="container-fluid">
       <a href="{{route('home')}}" class="navbar-brand">Virtual Clinic</a>
       <button class="navbar-toggler" data-toggle='collapse' data-target='#navCol'>

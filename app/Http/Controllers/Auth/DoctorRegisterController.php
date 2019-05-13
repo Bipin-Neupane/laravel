@@ -16,11 +16,11 @@ class DoctorRegisterController extends Controller
         $this->validate($request, [
             'first_name'   => 'required|string',
             'last_name' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1999',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'contact' => 'required|string',
             'address'=> 'required|string',
-            'citizenship'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1999',
-            'certificate'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1999',
+            'citizenship'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'certificate'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'category'=> 'required|integer',
             'experience'=> 'required|integer',
         ]);

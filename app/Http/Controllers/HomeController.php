@@ -46,7 +46,7 @@ class HomeController extends Controller
         }
 
         $category = DB::table('doctors')->where('category', $type)->get();
-        return view('category', compact("category"));
+        return view('layouts.patient.category', compact("category"));
     }
     
 }

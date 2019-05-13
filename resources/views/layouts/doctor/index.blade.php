@@ -14,14 +14,27 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="md-form">
-                  <input type="text" name='first_name' id='first_name' class="form-control">
+                  <input type="text" name='first_name' id='first_name'
+                    class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}"
+                    required>
                   <label for="first_name">First name</label>
+                  @error('first_name')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>Field required</strong>
+                  </span>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="md-form">
-                  <input type="text" name='last_name' id='last_name' class="form-control">
+                  <input type="text" name='last_name' id='last_name' class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}"
+                  required>
                   <label for="last_name">Last name</label>
+                  @error('last_name')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>Field required</strong>
+                  </span>
+                  @enderror
                 </div>
               </div>
             </div>
@@ -39,21 +52,33 @@
             </div>
 
             <div class="md-form">
-              <input type="text" name='contact' id='contact' class="form-control">
+              <input type="text" name='contact' id='contact' class="form-control @error('contact') is-invalid @enderror" value="{{ old('contact') }}" required>
               <label for="contact">Contact</label>
+              @error('contact')
+                <span class="invalid-feedback" role="alert">
+                  <strong>Field required</strong>
+                </span>
+              @enderror
             </div>
+
             <div class="md-form">
-              <input type="text" name='address' id='address' class="form-control">
+              <input type="text" name='address' id='address' class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" required>
               <label for="address">Address</label>
+              @error('address')
+                <span class="invalid-feedback" role="alert">
+                  <strong>Field required</strong>
+                </span>
+              @enderror
             </div>
-            <div class="md-form">
-              <input type="date" id="birth_date" class="form-control">
+            {{-- <div class="md-form">
+              <input type="date" id="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}"
+                    required>
               <label for="birth_date">Date of Birth</label>
-            </div>
+            </div> --}}
           </div>
           <div class="col-md-6">
             <div class="md-form">
-              <select class="mdb-select md-form" id='category' name='category'>
+              <select class="mdb-select md-form" id='category' name='category' required>
                 <option value="" selected disabled>Choose your field of expertise</option>
                 <option value="0">Physician</option>
                 <option value="1">Psychiatrist</option>
@@ -64,16 +89,16 @@
               <div class="file-field">
                 <div class="btn aqua-gradient btn-sm float-left mx-0">
                   <span>Choose Image</span>
-                  <input type="file" name='citizenship' id='citizenship'>
+                  <input type="file" name='citizenship' id='citizenship' required>
                 </div>
                 <div class="file-path-wrapper">
-                  <input class="file-path validate" disabled type="text" placeholder="Upload your citizenship">
+                  <input class="file-path" disabled type="text" placeholder="Upload your citizenship">
                 </div>
               </div>
             </div>
 
             <div class="md-form">
-              <select class="mdb-select md-form" id='experience' name='experience'>
+              <select class="mdb-select md-form" id='experience' name='experience' required>
                 <option value="" selected disabled>Experience</option>
                 <option value="0">1-2 yrs</option>
                 <option value="1">2-5 yrs</option>
@@ -86,11 +111,10 @@
               <div class="file-field">
                 <div class="btn aqua-gradient btn-sm float-left mx-0">
                   <span>Choose Image</span>
-                  <input type="file" name='certificate' id='certificate'>
+                  <input type="file" name='certificate' id='certificate' required>
                 </div>
                 <div class="file-path-wrapper">
-                  <input class="file-path validate" disabled type="text"
-                    placeholder="Upload your license[Doctor certificate]">
+                  <input class="file-path" disabled type="text" placeholder="Upload your license[Doctor certificate]">
                 </div>
               </div>
             </div>

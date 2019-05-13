@@ -35,3 +35,12 @@ li.active a {
     background: white;
     margin-top: 10px;
 }
+
+#category .view {
+    height: 225px !important;
+}
+
+#category .view img {
+    height: 100% !important;
+    object-fit: cover;
+}
