@@ -53,10 +53,21 @@
             </div>
 
             <div class="md-form">
-              <input type="text" name='contact' id='contact' class="form-control @error('contact') is-invalid @enderror"
-                value="{{ old('contact') }}" required>
-              <label for="contact">Contact</label>
-              @error('contact')
+              <input type="text" name='country' id='country' class="form-control @error('country') is-invalid @enderror"
+                value="{{ old('country') }}" required>
+              <label for="country">Country</label>
+              @error('country')
+              <span class="invalid-feedback" role="alert">
+                <strong>Field required</strong>
+              </span>
+              @enderror
+            </div>
+
+            <div class="md-form">
+              <input type="text" name='state' id='state' class="form-control @error('state') is-invalid @enderror"
+                value="{{ old('state') }}" required>
+              <label for="state">State</label>
+              @error('state')
               <span class="invalid-feedback" role="alert">
                 <strong>Field required</strong>
               </span>
@@ -73,13 +84,55 @@
               </span>
               @enderror
             </div>
+
             <div class="md-form">
-              <input type="date" name='birth_date' id="birth_date" class="form-control @error('birth_date') is-invalid @enderror"
-                value="{{ old('birth_date') }}" required>
+              <input type="text" name='contact' id='contact' class="form-control @error('contact') is-invalid @enderror"
+                value="{{ old('contact') }}" required>
+              <label for="contact">Contact</label>
+              @error('contact')
+              <span class="invalid-feedback" role="alert">
+                <strong>Field required</strong>
+              </span>
+              @enderror
+            </div>
+
+            <div class="md-form">
+              <select class="mdb-select md-form" id='gender' name='gender' required>
+                <option value="" selected disabled>Gender</option>
+                <option value="male"> Male </option>
+                <option value="female"> Female </option>
+              </select>
+            </div>
+
+            <div class="md-form">
+              <input type="date" name='birth_date' id="birth_date"
+                class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" required>
               <label for="birth_date">Date of Birth</label>
             </div>
           </div>
           <div class="col-md-6">
+            <div class="md-form">
+              <input type="text" name='cur_work' id='cur_work'
+                class="form-control @error('cur_work') is-invalid @enderror" value="{{ old('cur_work') }}" required>
+              <label for="cur_work">Currently Working At</label>
+              @error('cur_work')
+              <span class="invalid-feedback" role="alert">
+                <strong>Field required</strong>
+              </span>
+              @enderror
+            </div>
+
+            <div class="md-form">
+              <input type="text" name='prev_work' id='prev_work'
+                class="form-control @error('prev_work') is-invalid @enderror" value="{{ old('prev_work') }}" required>
+              <label for="prev_work">Previouly Worked At</label>
+              @error('prev_work')
+              <span class="invalid-feedback" role="alert">
+                <strong>Field required</strong>
+              </span>
+              @enderror
+            </div>
+
             <div class="md-form">
               <select class="mdb-select md-form" id='category' name='category' required>
                 <option value="" selected disabled>Choose your field of expertise</option>
