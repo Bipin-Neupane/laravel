@@ -109,6 +109,9 @@
     $(document).ready(function() {
       $('.mdb-select').materialSelect();
     });
+    $(function () {
+      $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+    });
 </script>
 
 </body>
