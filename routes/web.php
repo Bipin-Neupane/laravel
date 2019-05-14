@@ -29,3 +29,6 @@ Route::prefix('admin')->group(function() {
 Route::get('/category={physician}', 'HomeController@category')->name('category=physician');
 Route::get('/category={psychiatrist}', 'HomeController@category')->name('category=psychiatrist');
 
+Route::get('/profile', 'HomeController@profile')->name('profile');
+
+

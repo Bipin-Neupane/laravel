@@ -46,7 +46,10 @@ class HomeController extends Controller
         }
 
         $category = DB::table('doctors')->where('category', $type)->get();
-        return view('layouts.patient.category', compact("category"));
+        $rating = DB::table('doctors')->where('category', $type)->orderBy('rating', 'desc')->take(2)->get();
+        return view('layouts.patient.category', compact('category', 'rating', 'email'));
     }
-    
+
+    public function profile($first) {
+    }
 }
