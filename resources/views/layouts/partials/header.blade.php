@@ -11,8 +11,8 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor's Category</a>
             <div class="dropdown-menu">
-              <a href="{{route('category=physician', 'physician')}}" class="dropdown-item">PHYSICIAN</a>
-              <a href="{{route('category=psychiatrist', 'psychiatrist')}}" class="dropdown-item">PSYCHIATRIST</a>
+              <a href="{{route('category', 'physician')}}" class="dropdown-item">PHYSICIAN</a>
+              <a href="{{route('category', 'psychiatrist')}}" class="dropdown-item">PSYCHIATRIST</a>
             </div>
           </li>
           @endif

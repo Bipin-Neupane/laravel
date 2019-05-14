@@ -35,7 +35,7 @@
                                 @endswitch
                             </p>
                             <p class="font-weight-normal">Rating: {{$cat->rating}}</p>
-                            <a href="{{route('profile')}}" class="btn blue-gradient btn-block">View
+                            <a href="{{route('profile', $cat->email)}}" class="btn blue-gradient btn-block">View
                                 Profile</a>
                         </div>
                     </div>

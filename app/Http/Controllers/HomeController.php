@@ -50,6 +50,7 @@ class HomeController extends Controller
         return view('layouts.patient.category', compact('category', 'rating', 'email'));
     }
 
-    public function profile($first) {
+    public function profile($cat_email) {
+        return 'Hello';
     }
 }

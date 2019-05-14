@@ -26,9 +26,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-Route::get('/category={physician}', 'HomeController@category')->name('category=physician');
-Route::get('/category={psychiatrist}', 'HomeController@category')->name('category=psychiatrist');
+Route::get('/category/{type}', 'HomeController@category')->name('category');
 
-Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('/profile/{cat_email}', 'HomeController@profile')->name('profile');
 
 
