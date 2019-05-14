@@ -30,4 +30,4 @@ Route::get('/category/{type}', 'HomeController@category')->name('category');
 
 Route::get('/profile/{cat_email}', 'HomeController@profile')->name('profile');
 
-
+Route::post('/profile/{abc}', 'HomeController@appoint')->name('appoint');

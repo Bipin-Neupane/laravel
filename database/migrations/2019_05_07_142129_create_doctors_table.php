@@ -14,7 +14,7 @@ class CreateDoctorsTable extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('email');
             $table->string('registration_status')->default('pending');
             $table->string('submit_status')->default('pending');

@@ -53,7 +53,16 @@ class HomeController extends Controller
     public function profile($cat_email) {
         $profile = DB::table('doctors')->where('email', $cat_email)->first();
         if ($profile) {
-            return view('layouts.next_page.profile', compact('profile'));
+            return view('layouts.next_page.profile', compact('profile'))->with('success', '');
+        } else {
+            return 'Page not found';
+        }
+    }
+
+    public function appoint($abc) {
+        $profile = DB::table('doctors')->where('email', $abc)->first();
+        if ($profile) {
+            return view('layouts.next_page.profile', compact('profile'))->with('success', 'Successfully sent');
         } else {
             return 'Page not found';
         }
