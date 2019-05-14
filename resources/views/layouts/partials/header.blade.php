@@ -7,7 +7,6 @@
       </button>
       <div id='navCol' class="collapse navbar-collapse">
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
-          @if (Auth::user()->user_type === 'patient')
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor's Category</a>
             <div class="dropdown-menu">
@@ -15,7 +14,6 @@
               <a href="{{route('category', 'psychiatrist')}}" class="dropdown-item">PSYCHIATRIST</a>
             </div>
           </li>
-          @endif
           <li class="nav-item dropdown notifications-nav">
             <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">

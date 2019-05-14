@@ -47,10 +47,15 @@ class HomeController extends Controller
 
         $category = DB::table('doctors')->where('category', $type)->get();
         $rating = DB::table('doctors')->where('category', $type)->orderBy('rating', 'desc')->take(2)->get();
-        return view('layouts.patient.category', compact('category', 'rating', 'email'));
+        return view('layouts.next_page.category', compact('category', 'rating', 'email'));
     }
 
     public function profile($cat_email) {
-        return 'Hello';
+        $profile = DB::table('doctors')->where('email', $cat_email)->first();
+        if ($profile) {
+            return view('layouts.next_page.profile', compact('profile'));
+        } else {
+            return 'Page not found';
+        }
     }
 }
