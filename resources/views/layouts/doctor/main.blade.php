@@ -1,16 +1,16 @@
-<div class="text-white text-center py-5" id="intro" style="background: #3147A4">
-    <div class="container px-5">
+<div class="text-white text-center py-5" id="intro"
+    style="background:url('https://mdbootstrap.com/img/Photos/Others/images/37.jpg');background-attachment:fixed;background-size:cover;">
+    <div class="container p-5">
         <h1 style="font-family:Arial, Helvetica, sans-serif">
             Welcome {{ucfirst($data->first_name)}} {{ucfirst($data->last_name)}}
         </h1>
         <p class="lead"> Get paid assisiting patients through online communication. We improve based on your dedication
-            towards
-            patients.
+            towards patients.
         </p>
     </div>
 </div>
 
-<div class="py-5 blue lighten-5" id="user_manual">
+<div class="py-5 grey lighten-4" id="user_manual">
     <div class="container">
         <h3 class=""> User Manual</h3>
         <div class="container">

@@ -17,10 +17,16 @@ class CreatePatientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('email');
             $table->string('image')->nullable();
+            $table->string('report')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('address')->nullable();
             $table->string('contact')->nullable();
             $table->string('birth_date')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('cur_work')->nullable();
             $table->timestamps();
         });
     }

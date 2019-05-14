@@ -73,61 +73,61 @@
               </span>
               @enderror
             </div>
-            {{-- <div class="md-form">
-              <input type="date" id="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}"
-            required>
-            <label for="birth_date">Date of Birth</label>
-          </div> --}}
-        </div>
-        <div class="col-md-6">
-          <div class="md-form">
-            <select class="mdb-select md-form" id='category' name='category' required>
-              <option value="" selected disabled>Choose your field of expertise</option>
-              <option value="0">Physician</option>
-              <option value="1">Psychiatrist</option>
-            </select>
-          </div>
-
-          <div class="md-form">
-            <div class="file-field">
-              <div class="btn aqua-gradient btn-sm float-left mx-0">
-                <span>Choose Image</span>
-                <input type="file" name='citizenship' id='citizenship' required>
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path" disabled type="text" placeholder="Upload your citizenship">
-              </div>
+            <div class="md-form">
+              <input type="date" name='birth_date' id="birth_date" class="form-control @error('birth_date') is-invalid @enderror"
+                value="{{ old('birth_date') }}" required>
+              <label for="birth_date">Date of Birth</label>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="md-form">
+              <select class="mdb-select md-form" id='category' name='category' required>
+                <option value="" selected disabled>Choose your field of expertise</option>
+                <option value="0">Physician</option>
+                <option value="1">Psychiatrist</option>
+              </select>
+            </div>
 
-          <div class="md-form">
-            <select class="mdb-select md-form" id='experience' name='experience' required>
-              <option value="" selected disabled>Experience</option>
-              <option value="0">1-2 yrs</option>
-              <option value="1">2-5 yrs</option>
-              <option value="2">5-10 yrs</option>
-              <option value="3">10+ yrs</option>
-            </select>
-          </div>
-
-          <div class="md-form mt-1">
-            <div class="file-field">
-              <div class="btn aqua-gradient btn-sm float-left mx-0">
-                <span>Choose Image</span>
-                <input type="file" name='certificate' id='certificate' required>
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path" disabled type="text" placeholder="Upload your license[Doctor certificate]">
+            <div class="md-form">
+              <div class="file-field">
+                <div class="btn aqua-gradient btn-sm float-left mx-0">
+                  <span>Choose Image</span>
+                  <input type="file" name='citizenship' id='citizenship' required>
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path" disabled type="text" placeholder="Upload your citizenship">
+                </div>
               </div>
             </div>
-          </div>
 
+            <div class="md-form">
+              <select class="mdb-select md-form" id='experience' name='experience' required>
+                <option value="" selected disabled>Experience</option>
+                <option value="0">1-2 yrs</option>
+                <option value="1">2-5 yrs</option>
+                <option value="2">5-10 yrs</option>
+                <option value="3">10+ yrs</option>
+              </select>
+            </div>
+
+            <div class="md-form mt-1">
+              <div class="file-field">
+                <div class="btn aqua-gradient btn-sm float-left mx-0">
+                  <span>Choose Image</span>
+                  <input type="file" name='certificate' id='certificate' required>
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path" disabled type="text" placeholder="Upload your license[Doctor certificate]">
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+        <button type="submit" class="btn blue-gradient">Submit</button>
       </div>
-      <button type="submit" class="btn blue-gradient">Submit</button>
     </div>
-</div>
-</form>
+  </form>
 </div>
 @endif
 @else

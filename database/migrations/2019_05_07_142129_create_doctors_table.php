@@ -19,6 +19,9 @@ class CreateDoctorsTable extends Migration
             $table->string('registration_status')->default('pending');
             $table->string('submit_status')->default('pending');
             $table->string('contact')->nullable();
+            $table->string('birth_date')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
             $table->string('address')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -28,6 +31,9 @@ class CreateDoctorsTable extends Migration
             $table->integer('experience')->nullable();
             $table->integer('rating')->default('0');
             $table->integer('category')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('cur_work')->nullable();
+            $table->string('prev_work')->nullable();
             $table->timestamps();
         });
     }

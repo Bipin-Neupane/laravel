@@ -14,15 +14,21 @@ class DoctorRegisterController extends Controller
     {
         $email = Auth::user()->email;
         $this->validate($request, [
+            'contact' => 'required|string',
+            'birth_date' => 'required|date|date_format:Y-m-d',
+            'country'=> 'required|string',
+            'state'=> 'required|string',
+            'address'=> 'required|string',
             'first_name'   => 'required|string',
             'last_name' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'contact' => 'required|string',
-            'address'=> 'required|string',
             'citizenship'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'certificate'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'category'=> 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'experience'=> 'required|integer',
+            'category'=> 'required|integer',
+            'gender'=> 'required|string',
+            'cur_work'=> 'required|string',
+            'prev_work'=> 'required|string',
         ]);
         
         if ($request->hasFile('image')) {
@@ -49,15 +55,21 @@ class DoctorRegisterController extends Controller
         DB::table('doctors')
             ->where('email', $email)
             ->update([
+                'contact' => $request->contact,
+                'birth_date' => $request->birth_date,
+                'country'=> $request->country,
+                'state'=> $request->state,
+                'address'=> $request->address,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'image' => $profile_img,
-                'contact' => $request->contact,
-                'address' => $request->address,
                 'citizenship' => $citizenship_img,
                 'certificate' => $certificate_img,
-                'category' => $request->category,
+                'image' => $profile_img,
                 'experience' => $request->experience,
+                'category' => $request->category,
+                'gender'=> $request->gender,
+                'cur_work'=> $request->cur_work,
+                'prev_work'=> $request->prev_work,
                 'submit_status' => 'submitted',
                 ]);
                 
