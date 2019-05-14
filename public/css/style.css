@@ -44,3 +44,34 @@ li.active a {
     height: 100% !important;
     object-fit: cover;
 }
+
+#profile .left h5,
+#profile .left p {
+    margin-bottom: 5px;
+}
+
+#profile .right h5,
+#profile .right p {
+    margin-bottom: 5px;
+}
+
+#profile .right .title {
+    width: 200px;
+}
+
+.prof-img {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.prof-img img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    min-width: 100%;
+    max-width: 115%;
+    justify-self: center;
+}

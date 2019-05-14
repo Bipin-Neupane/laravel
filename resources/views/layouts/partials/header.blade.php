@@ -46,8 +46,20 @@
             <a class="nav-link dropdown-toggle d-flex" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" style="margin-top: 2px;">
               <p class="align-self-center mb-0 mr-2 text-capitalize">{{Auth::user()->name}}</p>
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0"
-                alt="avatar image">
+              <?php
+              if (Auth::user()->user_type === 'doctor'){
+                $users = DB::table('doctors')->where('email', Auth::user()->email)->first();
+              }
+              if (Auth::user()->user_type === 'patient'){
+                $users = DB::table('patients')->where('email', Auth::user()->email)->first();
+              }
+              ?>
+              @if ($users->image)
+              <img src="{{url('img/'.Auth::user()->user_type.'/profile/'.$users->image)}}"
+                class="rounded-circle z-depth-0" alt="avatar image">
+              @else
+              <img src="{{url('img/avatar-d.png')}}" class="rounded-circle z-depth-0" alt="avatar image">
+              @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-secondary"
               aria-labelledby="navbarDropdownMenuLink-55">
