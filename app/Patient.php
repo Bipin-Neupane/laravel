@@ -29,9 +29,6 @@ class Patient extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $primaryKey = 'email'; // or null
-
-    public $incrementing = false;
     /**
      * The attributes that should be cast to native types.
      *

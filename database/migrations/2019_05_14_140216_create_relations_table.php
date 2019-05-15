@@ -18,7 +18,7 @@ class CreateRelationsTable extends Migration
             $table->string('problems');
             $table->longText('problems_detail');
             $table->string('report');
-            $table->string('time');
+            $table->string('time')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
             $table->integer('patient_id')->unsigned();

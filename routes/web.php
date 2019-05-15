@@ -28,6 +28,6 @@ Route::prefix('admin')->group(function() {
 
 Route::get('/category/{type}', 'HomeController@category')->name('category');
 
-Route::get('/profile/{cat_email}', 'HomeController@profile')->name('profile');
+Route::get('/profile/{cat_email}', 'AppointController@index')->name('profile');
 
-Route::post('/profile/{abc}', 'HomeController@appoint')->name('appoint');
+Route::post('/profile/{abc}', 'AppointController@create')->name('appoint');
