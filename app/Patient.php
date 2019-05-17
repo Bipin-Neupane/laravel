@@ -11,6 +11,7 @@ class Patient extends Authenticatable
     use Notifiable;
 
     protected $guard = 'patient';
+
     /**
      * The attributes that are mass assignable.
      *

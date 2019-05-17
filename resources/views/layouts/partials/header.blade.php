@@ -14,34 +14,9 @@
               <a href="{{route('category', 'psychiatrist')}}" class="dropdown-item">PSYCHIATRIST</a>
             </div>
           </li>
-          <li class="nav-item dropdown notifications-nav">
-            <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="badge red">3</span> <i class="fas fa-bell"></i>
-              <span class="d-none d-md-inline-block">Notifications</span>
-            </a>
-            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">
-                <i class="far fa-money-bill-alt mr-2" aria-hidden="true"></i>
-                <span>New order received</span>
-                <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 13 min</span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <i class="far fa-money-bill-alt mr-2" aria-hidden="true"></i>
-                <span>New order received</span>
-                <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 33 min</span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>
-                <span>Your campaign is about to end</span>
-                <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 53 min</span>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect"><i class="far fa-comments"></i> <span
-                class="clearfix d-none d-sm-inline-block">Support</span></a>
-          </li>
+
+          @include('layouts.partials.notification')
+
           <li class="nav-item avatar dropdown">
             <a class="nav-link dropdown-toggle d-flex" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" style="margin-top: 2px;">
@@ -56,11 +31,12 @@
               ?>
               @if ($users->image)
               <img src="{{url('img/'.Auth::user()->user_type.'/profile/'.$users->image)}}"
-                class="rounded-circle z-depth-0" alt="avatar image">
+                class="rounded-circle z-depth-0" alt="avatar image" style="width:35px;">
               @else
               <img src="{{url('img/avatar-d.png')}}" class="rounded-circle z-depth-0" alt="avatar image">
               @endif
             </a>
+
             <div class="dropdown-menu dropdown-menu-right dropdown-secondary"
               aria-labelledby="navbarDropdownMenuLink-55">
               <a class="dropdown-item" href="#">My account</a>

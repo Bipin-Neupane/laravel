@@ -112,21 +112,14 @@
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <i class="fas fa-tag prefix grey-text"></i>
-                        <input type="text" id="problems" name="problems"
-                            class="form-control @error('problems') is-invalid @enderror" value="{{ old('problems') }}">
+                        <input type="text" id="problems" name="problems" class="form-control" autofocus required>
                         <label for="problems">Problems</label>
-                        @error('problems')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>Field required</strong>
-                        </span>
-                        @enderror
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-pencil-alt prefix grey-text"></i>
                         <textarea type="text" id="problems_detail" name='problems_detail'
-                            class="md-textarea form-control @error('problems_detail') is-invalid @enderror"
-                            value="{{ old('problems_detail') }}" rows="4"></textarea>
+                            class="md-textarea form-control" rows="4" autocomplete="false" required></textarea>
                         <label for="problems_detail">Problems In Detail</label>
                     </div>
 
@@ -134,7 +127,7 @@
                         <div class="file-field">
                             <div class="btn aqua-gradient btn-sm float-left mx-0">
                                 <span>Choose Image</span>
-                                <input type="file" name='report' id='report' required>
+                                <input type="file" name='report' id='report'>
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path" disabled type="text"

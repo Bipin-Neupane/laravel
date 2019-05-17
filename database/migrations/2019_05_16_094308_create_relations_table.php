@@ -15,16 +15,15 @@ class CreateRelationsTable extends Migration
     {
         Schema::create('relations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('doctor_email');
+            $table->string('patient_email');
             $table->string('problems');
             $table->longText('problems_detail');
-            $table->string('report');
+            $table->string('report')->nullable();
             $table->string('time')->nullable();
             $table->string('status')->default('pending');
+            $table->string('app_status')->default('pending');
             $table->timestamps();
-            $table->integer('patient_id')->unsigned();
-            $table->integer('doctor_id')->unsigned();
-            $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
         });
     }
 

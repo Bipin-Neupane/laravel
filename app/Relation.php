@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-
 class Relation extends Model
 {
     use Notifiable;
@@ -17,6 +16,6 @@ class Relation extends Model
      * @var array
      */
     protected $fillable = [
-        'problems', 'problems_detail', 'report', 'time', 'status', 'patient_id', 'doctor_id',
+        'patient_email', 'doctor_email', 'problems', 'problems_detail', 'report', 'time', 'status',
     ];
 }

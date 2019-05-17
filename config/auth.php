@@ -101,7 +101,7 @@ return [
             'model' => App\Patient::class,
         ],
 
-        'patients' => [
+        'relations' => [
             'driver' => 'eloquent',
             'model' => App\Relation::class,
         ],
