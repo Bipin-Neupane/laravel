@@ -1,10 +1,10 @@
 @include('includes.head')
-<header>
+<header style="margin-top: -55px;">
 
   <!--Navbar-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
-      <a class="navbar-brand" href="#"><strong>Navbar</strong></a>
+      <a class="navbar-brand" href="#"><strong>Virtual Clinic</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,19 +19,10 @@
             <a class="nav-link" href="#about" data-offset="80">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#team" data-offset="80">Team</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#pricing" data-offset="20">Pricing</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#features" data-offset="80">Features</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#testimonials" data-offset="80">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#modal-info">Info</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -53,19 +44,19 @@
         <div class="row pt-5 mt-3">
           <div class="col-12 col-md-6 text-center text-md-left">
             <div class="white-text">
-              <h1 class="h1-responsive font-weight-bold mt-md-5 mt-0 wow fadeInLeft" data-wow-delay="0.3s">Medical
-                landing page</h1>
+              <h1 class="h1-responsive font-weight-bold mt-md-5 mt-0 wow fadeInLeft" data-wow-delay="0.3s">Virtal Clinic
+              </h1>
               <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-              <p class="wow fadeInLeft mb-3" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Rem repellendus quasi fuga nesciunt
-                dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
-                iste.
+              <p class="wow fadeInLeft mb-3" data-wow-delay="0.3s">
+                We provide a way for non emergency medical treatment to the patients through telecommunication. Our
+                service is reliable, secure and easy to use.
+                Register Now to get full feature available through this website.
               </p>
               <br>
-              <a class="btn btn-unique btn-rounded font-weight-bold ml-lg-0 wow fadeInLeft"
-                data-wow-delay="0.3s">Download</a>
-              <a class="btn btn-outline-white btn-rounded font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Learn
-                more
+              <a href="{{route('login')}}" class="btn btn-unique btn-rounded font-weight-bold ml-lg-0 wow fadeInLeft"
+                data-wow-delay="0.3s">Login</a>
+              <a href="{{route('register')}}" class="btn btn-outline-white btn-rounded font-weight-bold wow fadeInLeft"
+                data-wow-delay="0.3s">Register
               </a>
             </div>
           </div>
@@ -164,10 +155,9 @@
         treatments</h1>
       <!--Section sescription-->
       <p class="text-center grey-text w-responsive mx-auto mb-5 wow fadeIn" data-wow-delay="0.2s">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum quas, eos officia maiores ipsam ipsum
-        dolores reiciendis
-        ad voluptas, animi obcaecati adipisci sapiente mollitia? Autem delectus quod accusamus tempora, aperiam
-        minima assumenda deleniti hic.</p>
+        Virtual Clinic provide a way for non emergency medical treatment to the patients through telecommunication. Our
+        service is reliable, secure and easy to use.
+      </p>
 
       <!--First row-->
       <div class="row features-big my-4 text-center">
@@ -176,10 +166,10 @@
           <div class="card hoverable">
             <i class="fas fa-heart blue-text mt-3 fa-3x my-4"></i>
             <h5 class="font-weight-bold mb-4"">Experience</h5>
-                            <p class=" grey-text font-small mx-3">Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Reprehenderit maiores nam,
-              aperiam
-              minima assumenda deleniti hic.</p fa-3x mb-4>
+              <p class=" grey-text font-small mx-3">
+              We have doctors who are experienced in their field from 2 years to 10 years or more. You have
+              choice to choose doctors of your choice.
+              </p fa-3x mb-4>
           </div>
         </div>
         <!--/First column-->
@@ -188,10 +178,11 @@
         <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.4s">
           <div class="card hoverable">
             <i class="far fa-eye blue-text mt-3 fa-3x my-4"></i>
-            <h5 class="font-weight-bold mb-4">Protection</h5>
-            <p class="grey-text font-small mx-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reprehenderit maiores nam, aperiam
-              minima assumenda deleniti hic.</p>
+            <h5 class="font-weight-bold mb-4">Reliable</h5>
+            <p class="grey-text font-small mx-3">
+              Since we have experienced doctors they are more reliable and have vision to provide high quality
+              treatments.
+            </p>
           </div>
         </div>
         <!--/Second column-->
@@ -201,10 +192,10 @@
           <div class="card hoverable">
             <i class="fas fa-briefcase-medical blue-text mt-3 fa-3x my-4"></i>
             <h5 class="font-weight-bold mb-4"">Qualifications</h5>
-                            <p class=" grey-text font-small mx-3">Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Reprehenderit maiores nam,
-              aperiam
-              minima assumenda deleniti hic.</p>
+              <p class=" grey-text font-small mx-3">
+              For doctors who want to part of our program, you should have at least 2 years of experience in your field
+              and provide legit documents.
+              </p>
           </div>
         </div>
         <!--/Third column-->
@@ -239,7 +230,7 @@
                     <img src="https://mdbootstrap.com/img/Photos/Others/images/40.jpg" class="img-fluid" alt="">
 
                     <div class="mask flex-center rgba-blue-strong">
-                      <h4 class="white-text font-weight-bold">Lorem ipsum dolor sit amet</h4>
+                      <h4 class="white-text font-weight-bold">Secure</h4>
                     </div>
                   </div>
                   <!--/Image-->
@@ -263,7 +254,7 @@
                     <img src="https://mdbootstrap.com/img/Photos/Others/images/39.jpg" class="img-fluid" alt="">
 
                     <div class="mask flex-center rgba-blue-strong">
-                      <h4 class="white-text font-weight-bold">Lorem ipsum dolor sit amet</h4>
+                      <h4 class="white-text font-weight-bold">Fast</h4>
                     </div>
                   </div>
                   <!--/Image-->
@@ -287,7 +278,7 @@
                     <img src="https://mdbootstrap.com/img/Photos/Others/images/38.jpg" class="img-fluid" alt="">
 
                     <div class="mask flex-center rgba-blue-strong">
-                      <h4 class="white-text font-weight-bold">Lorem ipsum dolor sit amet</h4>
+                      <h4 class="white-text font-weight-bold">Modern</h4>
                     </div>
                   </div>
                   <!--/Image-->
@@ -311,7 +302,7 @@
                     <img src="https://mdbootstrap.com/img/Photos/Others/images/41.jpg" class="img-fluid" alt="">
 
                     <div class="mask flex-center rgba-blue-strong">
-                      <h4 class="white-text font-weight-bold">Lorem ipsum dolor sit amet</h4>
+                      <h4 class="white-text font-weight-bold">Reliable</h4>
                     </div>
                   </div>
                   <!--/Image-->
@@ -348,22 +339,20 @@
           <!--Heading-->
           <h2 class="mb-3 font-weight-bold">We Provide High Quality services</h2>
           <!--Description-->
-          <h4 class="mb-5 dark-grey-text">Visit Our New Clinic in New York.</h4>
+          <h4 class="mb-5 dark-grey-text">Register to Virtual Clinic</h4>
           <!--Content-->
-          <p class="grey-text" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi
-            soluta ratione quisquam, dicta
-            ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque delectus, beatae maxime
-            temporibus maiores quibusdam quasi. Rem magnam ad perferendis iusto sint tempora ea voluptatibus
-            iure, animi excepturi modi aut possimus in hic molestias repellendus illo ullam odit quia velit.
+          <p class="grey-text" align="justify">
+            There is no reason to deny joining us. We become better with your support side by side. Our only objective
+            is to provide quality medical services online for your convenience, engagement and satisfaction. We hold
+            highly of your opinions and be better as time passes.
           </p>
 
-          <p class="grey-text" align="justify">Qui expedita sit quo, maxime molestiae. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit.
-            Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque repellendus voluptatum.
+          <p class="grey-text" align="justify">
+            Tired of visiting hospitals in non emergency cases? Make sure you try us.
           </p>
           <br>
           <!--Button-->
-          <a href="#home" class="btn btn-rounded btn-blue mb-4">Contact Us Now</a>
+          <a href="{{route('register')}}" class="btn btn-rounded btn-blue mb-4">Register today</a>
 
         </div>
         <!--/First column-->
@@ -400,28 +389,28 @@
           <!--First column-->
           <div class="col-md-3 mt-2">
             <h1 class="white-text font-weight-bold">+950</h1>
-            <p>Lorem ipsum dolor</p>
+            <p>Doctors</p>
           </div>
           <!--/First column-->
 
           <!--Second column-->
           <div class="col-md-3 mt-2">
             <h1 class="white-text font-weight-bold">+150</h1>
-            <p>Lorem ipsum dolor</p>
+            <p>University</p>
           </div>
           <!--/Second column-->
 
           <!--Third column-->
           <div class="col-md-3 mt-2">
             <h1 class="white-text font-weight-bold">+85</h1>
-            <p>Lorem ipsum dolor</p>
+            <p>Hospitals</p>
           </div>
           <!--/Third column-->
 
           <!--Fourth column-->
           <div class="col-md-3 mt-2 mb-5 pb-3">
             <h1 class="white-text font-weight-bold">+6K</h1>
-            <p>Lorem ipsum dolor</p>
+            <p>People</p>
           </div>
           <!--/Fourth column-->
 
@@ -433,476 +422,8 @@
   </div>
   <!--/Streak-->
 
-  <div class="container">
-
-    <!--Projects section v.3-->
-    <section id="team" class="mt-4 mb-2">
-
-      <!--Section heading-->
-      <h1 class="text-center mb-5 mt-5 pt-4 font-weight-bold dark-grey-text wow fadeIn" data-wow-delay="0.2s">Meet
-        our doctors</h1>
-      <!--Section description-->
-      <p class="text-center grey-text w-responsive mx-auto mb-5 wow fadeIn" data-wow-delay="0.2s">Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <!--First row-->
-      <div class="row wow fadeIn" data-wow-delay="0.4s">
-
-        <!--First column-->
-        <div class="col-md-12">
-
-          <div class="mb-2">
-
-            <!-- Nav tabs -->
-            <ul class="nav md-pills pills-primary flex-center" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#panel31" role="tab"><i
-                    class="far fa-eye fa-2x"></i><br>
-                  John</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel32" role="tab"><i
-                    class="fas fa-heartbeat fa-2x"></i><br>
-                  Anna</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel33" role="tab"><i class="fas fa-search fa-2x"></i><br>
-                  Maria</a>
-              </li>
-            </ul>
-
-          </div>
-
-          <!--Tab panels-->
-          <div class="tab-content">
-
-            <!--Panel 1-->
-            <div class="tab-pane fade show in active" id="panel31" role="tabpanel">
-              <br>
-
-              <!--First row-->
-              <div class="row d-flex justify-content-center">
-
-                <!--First column-->
-                <div class="col-lg-3 col-md-6 pb-5">
-
-                  <!--Featured image-->
-                  <div class="view overlay z-depth-1 z-depth-2">
-                    <img src="https://mdbootstrap.com/img/Photos/Vertical/People/img%20%281%29.jpg" class="img-fluid">
-                  </div>
-                </div>
-                <!--/First column-->
-
-                <!--Second column-->
-                <div class="col-lg-6 col-md-12 text-left">
-
-                  <!--Title-->
-                  <h4 class="mb-3">John Doe</h4>
-
-                  <!--Description-->
-                  <p class="grey-text" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-                    animi soluta ratione
-                    quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit
-                    eaque delectus, beatae maxime temporibus maiores quibusdam quasi.Rem magnam ad
-                    perferendis iusto sint tempora ea voluptatibus iure, animi excepturi modi aut
-                    possimus in hic molestias repellendus illo ullam odit quia velit.</p>
-
-                </div>
-                <!--/Second column-->
-              </div>
-              <!--/First row-->
-
-            </div>
-            <!--/.Panel 1-->
-
-            <!--Panel 2-->
-            <div class="tab-pane fade" id="panel32" role="tabpanel">
-              <br>
-
-              <!--First row-->
-              <div class="row d-flex justify-content-center">
-
-                <!--First column-->
-                <div class="col-lg-3 col-md-6 pb-5">
-
-                  <!--Featured image-->
-                  <div class="view overlay z-depth-1 z-depth-2">
-                    <img src="https://mdbootstrap.com/img/Photos/Vertical/People/img%20%283%29.jpg" class="img-fluid">
-                  </div>
-                </div>
-                <!--/First column-->
-
-                <!--Second column-->
-                <div class="col-lg-6 col-md-12 text-left">
-
-                  <!--Title-->
-                  <h4 class="mb-3">Anna Moon</h4>
-
-                  <!--Description-->
-                  <p class="grey-text" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-                    animi soluta ratione
-                    quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit
-                    eaque delectus, beatae maxime temporibus maiores quibusdam quasi.Rem magnam ad
-                    perferendis iusto sint tempora ea voluptatibus iure, animi excepturi modi aut
-                    possimus in hic molestias repellendus illo ullam odit quia velit.</p>
-
-                </div>
-                <!--/Second column-->
-              </div>
-              <!--/First row-->
-
-            </div>
-            <!--/.Panel 2-->
-
-            <!--Panel 3-->
-            <div class="tab-pane fade" id="panel33" role="tabpanel">
-              <br>
-
-              <!--First row-->
-              <div class="row d-flex justify-content-center">
-
-                <!--First column-->
-                <div class="col-lg-3 col-md-6 pb-5">
-
-                  <!--Featured image-->
-                  <div class="view overlay z-depth-1 z-depth-2">
-                    <img src="https://mdbootstrap.com/img/Photos/Vertical/People/img%20%284%29.jpg" class="img-fluid">
-                  </div>
-                </div>
-                <!--/First column-->
-
-                <!--Second column-->
-                <div class="col-lg-6 col-md-12 text-left">
-
-                  <!--Title-->
-                  <h4 class="mb-3">Maria Clark</h4>
-
-                  <!--Description-->
-                  <p class="grey-text" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-                    animi soluta ratione
-                    quisquam, dicta ab cupiditate iure eaque? Repellendus voluptatum, magni impedit
-                    eaque delectus, beatae maxime temporibus maiores quibusdam quasi.Rem magnam ad
-                    perferendis iusto sint tempora ea voluptatibus iure, animi excepturi modi aut
-                    possimus in hic molestias repellendus illo ullam odit quia velit.</p>
-
-                </div>
-                <!--/Second column-->
-              </div>
-              <!--/First row-->
-
-            </div>
-            <!--/.Panel 3-->
-
-          </div>
-          <!--/Tab panels-->
-
-        </div>
-        <!--/First column-->
-
-      </div>
-      <!--/First row-->
-
-    </section>
-    <!--/Projects section v.3-->
-
-  </div>
-
-  <div class="container-fluid grey lighten-3">
-    <div class="container">
-
-      <!--Section: Pricing v.1-->
-      <section id="pricing" class="pb-5 pt-3">
-
-        <!--Section heading-->
-        <h1 class="text-center mb-5 h1 pt-5 mt-5">Our pricing plans</h1>
-
-        <!--Section description-->
-        <p class="text-center w-responsive mx-auto my-5 grey-text">Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Fugit, error amet numquam iure provident voluptate
-          esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.</p>
-
-        <!--Grid row-->
-        <div class="row">
-
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-12 mb-4">
-
-            <!--Pricing card-->
-            <div class="card pricing-card">
-              <!-- Price -->
-              <div class="price header white-text blue lighten-3 rounded-top">
-                <h2 class="number">10</h2>
-                <div class="version">
-                  <h5 class="mb-0">Basic</h5>
-                </div>
-              </div>
-
-              <!--Features-->
-              <div class="card-body striped darker-striped">
-                <ul>
-                  <li>
-                    <p class="mt-1"><i class="fas fa-check"></i> 20 GB Of Storage</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> 2 Email Accounts</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-times"></i> 24h Tech Support</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-times"></i> 300 GB Bandwidth</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-times"></i> User Management </p>
-                  </li>
-                </ul>
-
-                <button class="btn btn-blue btn-rounded mb-3">Buy now</button>
-              </div>
-              <!--Features-->
-
-            </div>
-            <!--Pricing card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-6 mb-4">
-
-            <!--Pricing card-->
-            <div class="card pricing-card">
-              <!-- Price -->
-              <div class="price header white-text blue lighten-3 rounded-top">
-                <h2 class="number">20</h2>
-                <div class="version">
-                  <h5 class="mb-0">Pro</h5>
-                </div>
-              </div>
-
-              <!--Features-->
-              <div class="card-body striped darker-striped">
-                <ul>
-                  <li>
-                    <p class="mt-1"><i class="fas fa-check"></i> 20 GB Of Storage</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> 4 Email Accounts</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> 24h Tech Support</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-times"></i> 300 GB Bandwidth</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-times"></i> User Management </p>
-                  </li>
-                </ul>
-
-                <button class="btn btn-blue btn-rounded mb-3">Buy now</button>
-              </div>
-              <!--Features-->
-
-            </div>
-            <!--Pricing card-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <!--Pricing card-->
-            <div class="card pricing-card">
-              <!-- Price -->
-              <div class="price header white-text blue lighten-3 rounded-top">
-                <h2 class="number">30</h2>
-                <div class="version">
-                  <h5 class="mb-0">Enterprise</h5>
-                </div>
-              </div>
-
-              <!--Features-->
-              <div class="card-body striped darker-striped">
-                <ul>
-                  <li>
-                    <p class="mt-1"><i class="fas fa-check"></i> 30 GB Of Storage</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> 5 Email Accounts</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> 24h Tech Support</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> 300 GB Bandwidth</p>
-                  </li>
-                  <li>
-                    <p><i class="fas fa-check"></i> User Management </p>
-                  </li>
-                </ul>
-
-                <button class="btn btn-blue btn-rounded mb-3">Buy now</button>
-              </div>
-              <!--Features-->
-
-            </div>
-            <!--Pricing card-->
-          </div>
-          <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-      </section>
-      <!--Section: Pricing v.1-->
-
-    </div>
-  </div>
 
   <div class="container">
-
-    <!-- Section: Contact v.3 -->
-    <section class="contact-section my-5">
-
-      <!-- Form with header -->
-      <div class="card">
-
-        <!-- Grid row -->
-        <div class="row">
-
-          <!-- Grid column -->
-          <div class="col-lg-8">
-
-            <div class="card-body form">
-
-              <!-- Header -->
-              <h3 class="mt-4"><i class="fas fa-envelope pr-2"></i>Write to us:</h3>
-
-              <!-- Grid row -->
-              <div class="row">
-
-                <!-- Grid column -->
-                <div class="col-md-6">
-                  <div class="md-form mb-0">
-                    <input type="text" id="form-contact-name" class="form-control">
-                    <label for="form-contact-name" class="">Your name</label>
-                  </div>
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-6">
-                  <div class="md-form mb-0">
-                    <input type="text" id="form-contact-email" class="form-control">
-                    <label for="form-contact-email" class="">Your email</label>
-                  </div>
-                </div>
-                <!-- Grid column -->
-
-              </div>
-              <!-- Grid row -->
-
-              <!-- Grid row -->
-              <div class="row">
-
-                <!-- Grid column -->
-                <div class="col-md-6">
-                  <div class="md-form mb-0">
-                    <input type="text" id="form-contact-phone" class="form-control">
-                    <label for="form-contact-phone" class="">Your phone</label>
-                  </div>
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-6">
-                  <div class="md-form mb-0">
-                    <input type="text" id="form-contact-company" class="form-control">
-                    <label for="form-contact-company" class="">Your company</label>
-                  </div>
-                </div>
-                <!-- Grid column -->
-
-              </div>
-              <!-- Grid row -->
-
-              <!-- Grid row -->
-              <div class="row">
-
-                <!-- Grid column -->
-                <div class="col-md-12">
-                  <div class="md-form mb-0">
-                    <textarea type="text" id="form-contact-message" class="form-control md-textarea"
-                      rows="3"></textarea>
-                    <label for="form-contact-message">Your message</label>
-                    <a class="btn-floating btn-lg blue">
-                      <i class="far fa-paper-plane"></i>
-                    </a>
-                  </div>
-                </div>
-                <!-- Grid column -->
-
-              </div>
-              <!-- Grid row -->
-
-            </div>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-lg-4">
-
-            <div class="card-body contact text-center h-100 white-text light-blue darken-2">
-
-              <h3 class="my-4 pb-2">Contact information</h3>
-              <ul class="text-lg-left list-unstyled ml-4">
-                <li>
-                  <p><i class="fas fa-map-marker-alt pr-2 white-text"></i>New York, 94126, USA</p>
-                </li>
-                <li>
-                  <p><i class="fas fa-phone pr-2 white-text"></i>+ 01 234 567 89</p>
-                </li>
-                <li>
-                  <p><i class="fas fa-envelope pr-2 white-text"></i>contact@example.com</p>
-                </li>
-              </ul>
-              <hr class="hr-light my-4">
-              <ul class="list-inline text-center list-unstyled">
-                <li class="list-inline-item">
-                  <a class="p2 fa-lg tw-ic">
-                    <i class="fab fa-twitter white-text"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="p2 fa-lg li-ic">
-                    <i class="fab fa-linkedin-in white-text"> </i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="p2 fa-lg ins-ic">
-                    <i class="fab fa-instagram white-text"> </i>
-                  </a>
-                </li>
-              </ul>
-
-            </div>
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-      </div>
-      <!-- Form with header -->
-
-    </section>
-    <!-- Section: Contact v.3 -->
-
-    <hr>
 
     <!--Section: Testimonials v.2-->
     <section id="testimonials" class="mb-5 pb-4">
@@ -929,20 +450,11 @@
                     class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
-                <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Quod eos id officiis hic tenetur quae quaerat ad velit ab. Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit. Dolore cum accusamus eveniet molestias voluptatum inventore
-                  laboriosam labore sit, aspernatur praesentium iste impedit quidem dolor veniam.
+                <p><i class="fas fa-quote-left"></i>
+                  Today, Virtual Clinic and telemedicine are converging to make web telemedicine a reality.
                 </p>
 
                 <h4>Anna Deynah</h4>
-
-                <!--Review-->
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
               </div>
 
             </div>
@@ -958,20 +470,12 @@
                     class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
-                <p><i class="fas fa-quote-left"></i> Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                  aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                  nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                  adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore.
+                <p><i class="fas fa-quote-left"></i>
+                  It provides great service and is very reliable. I am totally satisfied with their service and
+                  recommend to others too.
                 </p>
 
                 <h4>Maria Kate</h4>
-
-                <!--Review-->
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star-half-alt"> </i>
               </div>
 
             </div>
@@ -987,20 +491,11 @@
                     class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
-                <p><i class="fas fa-quote-left"></i> Duis aute irure dolor in reprehenderit in voluptate velit
-                  esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                  sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde
-                  omnis iste natus error sit voluptatem accusantium.
+                <p><i class="fas fa-quote-left"></i>
+                  Better technology has helped make tele health more user friendly and accessible for people like us.
                 </p>
 
                 <h4>John Doe</h4>
-
-                <!--Review-->
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
-                <i class="fas fa-star"> </i>
               </div>
 
             </div>

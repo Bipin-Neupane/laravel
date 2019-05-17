@@ -1,3 +1,7 @@
+body {
+    margin-top: 55px;
+}
+
 .top-nav-collapse {
     /* background-color: #3e4551; */
     background: linear-gradient(40deg, #45cafc, #303f9f) !important;
@@ -74,4 +78,10 @@ li.active a {
     min-width: 100%;
     max-width: 115%;
     justify-self: center;
+}
+
+@media (max-width: 768px) {
+    #profile .left {
+        padding-left: 15px !important;
+    }
 }

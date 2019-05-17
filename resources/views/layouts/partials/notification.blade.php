@@ -11,29 +11,33 @@
         <span class="badge red">{{$data->count()}}</span> <i class="fas fa-bell"></i>
         <span class="d-none d-md-inline-block">Notifications</span>
     </a>
-    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+    <div class="dropdown-menu dropdown-primary pb-1" aria-labelledby="navbarDropdownMenuLink">
         @if ($data->count() > 0)
         @if (Auth::user()->user_type === 'patient')
         @foreach ($data as $dat)
         <?php $get = DB::table('doctors')->where('email', $dat->doctor_email)->first();?>
         @if ($dat->app_status === 'pending')
         <a class="dropdown-item" href="#">
-            <span>Request Sent to: {{$get->first_name}}</span>
+            <span>Request Sent to: <b>{{$get->first_name}}</b></span>
         </a>
         @else
         <a class="dropdown-item" href="#">
-            <span>Approved from: {{$get->first_name}}</span>
+            <span>Approved from: <b>{{$get->first_name}}</b></span>
         </a>
         @endif
         @endforeach
         @else
         @foreach ($data as $dat)
         <?php $get = DB::table('patients')->where('email', $dat->patient_email)->first();?>
+        @if ($dat->app_status === 'pending')
         <a class="dropdown-item" href="#">
-            <span>Request from: {{$get->first_name}}</span>
-            <span> </span>
-            <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 13 min</span>
+            <span>Request from: <b>{{$get->first_name}}</b></span>
         </a>
+        @else
+        <a class="dropdown-item" href="#">
+            <span>Approved request of: <b>{{$get->first_name}}</b></span>
+        </a>
+        @endif
         @endforeach
         @endif
         @else

@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light white">
+  <nav class="navbar navbar-expand-lg navbar-light white fixed-top">
     <div class="container-fluid">
       <a href="{{route('home')}}" class="navbar-brand">Virtual Clinic</a>
       <button class="navbar-toggler" data-toggle='collapse' data-target='#navCol'>
@@ -9,7 +9,7 @@
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor's Category</a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu pb-1">
               <a href="{{route('category', 'physician')}}" class="dropdown-item">PHYSICIAN</a>
               <a href="{{route('category', 'psychiatrist')}}" class="dropdown-item">PSYCHIATRIST</a>
             </div>
@@ -37,9 +37,9 @@
               @endif
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right dropdown-secondary"
+            <div class="dropdown-menu dropdown-menu-right dropdown-secondary pb-1"
               aria-labelledby="navbarDropdownMenuLink-55">
-              <a class="dropdown-item" href="#">My account</a>
+              <a class="dropdown-item" href="{{route('my_profile')}}">My account</a>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">Log Out</a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

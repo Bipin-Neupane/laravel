@@ -1,4 +1,4 @@
-<footer class="page-footer text-center text-md-left blue-gradient pt-0">
+<footer class="page-footer text-center text-md-left elegant-color pt-0">
 
   <div class="top-footer-color">
     <div class="container">
@@ -14,13 +14,15 @@
         <!--Grid column-->
         <div class="col-md-6 col-lg-7 text-center text-md-right">
           <!--Facebook-->
-          <a class="p-2 m-2 fa-lg fb-ic ml-0"><i class="fab fa-facebook-f white-text mr-lg-4"> </i></a>
+          <a href="https://www.facebook.com/" target="_blank" class="p-2 m-2 fa-lg fb-ic ml-0"><i
+              class="fab fa-facebook-f white-text mr-lg-4"> </i></a>
           <!--Twitter-->
-          <a class="p-2 m-2 fa-lg tw-ic"><i class="fab fa-twitter white-text mr-lg-4"> </i></a>
-          <!--Google +-->
-          <a class="p-2 m-2 fa-lg gplus-ic"><i class="fab fa-google-plus-g white-text mr-lg-4"> </i></a>
+          <a href="https://twitter.com/" target="_blank" class="p-2 m-2 fa-lg tw-ic"><i
+              class="fab fa-twitter white-text mr-lg-4">
+            </i></a>
           <!--Instagram-->
-          <a class="p-2 m-2 fa-lg ins-ic"><i class="fab fa-instagram white-text mr-lg-4"> </i></a>
+          <a href="https://www.instagram.com/" target="_blank" class="p-2 m-2 fa-lg ins-ic"><i
+              class="fab fa-instagram white-text mr-lg-4"> </i></a>
         </div>
         <!--Grid column-->
 
@@ -34,47 +36,37 @@
     <div class="row mt-3">
 
       <!--First column-->
-      <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
-        <h6 class="text-uppercase font-weight-bold"><strong>Company name</strong></h6>
+      <div class="col-md-5 mb-4">
+        <h6 class="text-uppercase font-weight-bold"><strong>Virtual Clinic</strong></h6>
         <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet,
-          consectetur
-          adipisicing elit.</p>
+        <p>We provide a way for non emergency medical treatment to the patients through telecommunication. Our service
+          is reliable, secure and easy to use. </p>
+        <p>Our only objective is to provide quality medical services online for your convenience, engagement and
+          satisfaction.</p>
       </div>
       <!--/.First column-->
 
       <!--Second column-->
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-        <h6 class="text-uppercase font-weight-bold"><strong>Products</strong></h6>
+      <div class="col-md-3 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold"><strong>Technology Used</strong></h6>
         <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p><a href="#!">MDBootstrap</a></p>
-        <p><a href="#!">MDWordPress</a></p>
-        <p><a href="#!">BrandFlow</a></p>
-        <p><a href="#!">Bootstrap Angular</a></p>
+        <p><a href="https://laravel.com/" target="_blank">Laravel</a></p>
+        <p><a href="https://reactjs.org/" target="_blank">React</a></p>
+        <p><a href="https://www.mysql.com/" target="_blank">MySql</a></p>
+        <p><a href="https://mdbootstrap.com/" target="_blank">Bootstrap</a></p>
       </div>
       <!--/.Second column-->
 
       <!--Third column-->
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-        <h6 class="text-uppercase font-weight-bold"><strong>Useful links</strong></h6>
-        <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p><a href="#!">Your Account</a></p>
-        <p><a href="#!">Become an Affiliate</a></p>
-        <p><a href="#!">Shipping Rates</a></p>
-        <p><a href="#!">Help</a></p>
-      </div>
-      <!--/.Third column-->
-
-      <!--Fourth column-->
-      <div class="col-md-4 col-lg-3 col-xl-3">
+      <div class="col-md-4">
         <h6 class="text-uppercase font-weight-bold"><strong>Contact</strong></h6>
         <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-        <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+        <p><i class="fas fa-home mr-3"></i>Kathmand, Nepal</p>
+        <p><i class="fas fa-envelope mr-3"></i>clinic@virtual.com</p>
+        <p><i class="fas fa-phone mr-3"></i> + 977 XXX XXXX XXX</p>
+        <p><i class="fas fa-phone mr-3"></i> + 977 XXX XXXX XXX</p>
       </div>
-      <!--/.Fourth column-->
+      <!--/.Third column-->
 
     </div>
   </div>
@@ -83,7 +75,7 @@
   <!-- Copyright-->
   <div class="footer-copyright py-3 text-center wow fadeIn" data-wow-delay="0.3s">
     <div class="container-fluid">
-      © 2019 Copyright: <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+      © 2019 Copyright: <span class="white-text">Virtual Clinic</span>
     </div>
   </div>
   <!--/.Copyright -->

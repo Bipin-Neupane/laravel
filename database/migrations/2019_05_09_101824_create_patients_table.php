@@ -16,6 +16,7 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email');
+            $table->string('submit_status')->default('pending');
             $table->string('image')->nullable();
             $table->string('report')->nullable();
             $table->string('country')->nullable();

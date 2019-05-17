@@ -1,5 +1,5 @@
-<header id="app">
-    <nav class="navbar navbar-expand-md navbar-dark blue-gradient">
+<header id="app" style='margin-top: -55px;'>
+    <nav class="navbar navbar-expand-md navbar-dark elegant-color">
         <div class="container">
             <a class="navbar-brand" href="{{ route('welcome') }}">Virtual Clinic</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
