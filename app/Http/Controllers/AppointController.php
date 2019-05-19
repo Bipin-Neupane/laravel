@@ -3,27 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
 use Auth;
 use App;
 
 
 class AppointController extends Controller
 {
-    public function index($abc) {
-
+    public function index($abc) 
+    {
         $profile = App\Doctor::where('email', $abc)->first();
         if ($profile) {
-            $relation = App\Relation::where('doctor_email', $profile->email)->first();
-            if ($relation) {
-                if ($relation->status === 'completed') {
-                    return view('layouts.next_page.profile', compact('profile'))->with('success', '');
-                } else {
-                    return view('layouts.next_page.profile', compact('profile'))->with('success', 'Completed');            
-                }
-            } else {
-                return view('layouts.next_page.profile', compact('profile'))->with('success', '');            
-            }
+            return view('layouts.next_page.profile', compact('profile'));            
         } else {    
             return "Page not found";
         }
@@ -54,11 +44,9 @@ class AppointController extends Controller
             'doctor_email' => $abc,
         ]);
                 
-        session::flash('success', 'Successfully appointed!');        
-
         $profile = App\Doctor::where('email', $abc)->first();
         if ($profile) {
-            return view('layouts.next_page.profile', compact('profile'))->with('success', 'Successfully sent');
+            return view('layouts.next_page.profile', compact('profile'));
         } else {
             return 'Page not found';
         }

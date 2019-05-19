@@ -33,11 +33,7 @@ class HomeController extends Controller
         }
         if (Auth::user()->user_type === 'patient') {
             $users = DB::table('patients')->where('email', $email)->first();
-            $docs = DB::table('doctors')
-                ->where('registration_status', 'approved')
-                ->inRandomOrder()
-                ->get();
-            return view('home', compact('docs'))->with('data', $users);
+            return view('home')->with('data', $users);
         }
     }
 

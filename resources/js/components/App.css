@@ -1,0 +1,18 @@
+.main-vid {
+    position: relative;
+    height: 500px;
+}
+
+.main-vid .my-video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 26%;
+    width: 26%;
+}
+
+@media (max-width: 768px) {
+    .my-video {
+        display: none;
+    }
+}

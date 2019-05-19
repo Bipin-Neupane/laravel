@@ -1,3 +1,9 @@
+<?php 
+  $docs = DB::table('doctors')
+            ->where('registration_status', 'approved')
+            ->inRandomOrder()
+            ->get();
+?>
 <div class="text-white text-center py-5" id="intro"
   style="background:url('https://mdbootstrap.com/img/Photos/Others/images/37.jpg');background-attachment:fixed;background-size:cover;">
   <div class="container px-5">

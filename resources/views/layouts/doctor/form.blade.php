@@ -80,7 +80,7 @@
             </div>
 
             <div class="md-form">
-              <input type="number" name='contact' id='contact' min='7' max='10' class="form-control @error('contact') is-invalid @enderror"
+              <input type="number" name='contact' id='contact' class="form-control @error('contact') is-invalid @enderror"
                 value="{{ old('contact') }}" required>
               <label for="contact">Contact</label>
               @error('contact')

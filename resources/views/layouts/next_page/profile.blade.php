@@ -1,3 +1,6 @@
+<?php 
+    $relation = DB::table('relations')->where('doctor_email', $profile->email)->first();
+?>
 @include('includes.head')
 @include('layouts.partials.header')
 <div id="profile" class="py-5 grey lighten-4">
@@ -49,15 +52,16 @@
                     <p><i class="far fa-thumbs-up"></i>: {{$profile->rating}}</p>
                 </div>
                 @if (Auth::user()->user_type === 'patient')
-                @if ($success)
+                @if ($relation)
                 <div>
-                    <a class="btn z-depth-0 bg-success text-white py-2 ml-0">Appointed</a>
+                    <a class="btn z-depth-0 elegant-color text-white py-2 ml-0" data-toggle="modal"
+                        data-target="#modalLoginForm">Appointed</a>
                     {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
                 </div>
                 @else
                 <div>
                     <a class="btn z-depth-0 elegant-color text-white py-2 ml-0" data-toggle="modal"
-                        data-target="#modalLoginForm">Appoint Now</a>
+                        data-target="#modalVideo">Appoint Now</a>
                     {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
                 </div>
                 @endif
@@ -97,8 +101,9 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div id="videoChat"></div>
+
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form method="POST" action='{{route('appoint', $profile->email)}}' enctype="multipart/form-data">
@@ -118,8 +123,8 @@
 
                     <div class="md-form">
                         <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea type="text" id="problems_detail" name='problems_detail'
-                            class="md-textarea form-control" rows="4" autocomplete="false" required></textarea>
+                        <textarea type="text" id="problems_detail" name='problems_detail' class="md-textarea form-control"
+                            rows="4" autocomplete="false" required></textarea>
                         <label for="problems_detail">Problems In Detail</label>
                     </div>
 
@@ -130,8 +135,7 @@
                                 <input type="file" name='report' id='report'>
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path" disabled type="text"
-                                    placeholder="Upload your report if available">
+                                <input class="file-path" disabled type="text" placeholder="Upload your report if available">
                             </div>
                         </div>
                     </div>

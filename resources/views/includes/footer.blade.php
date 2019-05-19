@@ -92,7 +92,6 @@
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
-
 <!-- Custom scripts -->
 <script>
   // Animation init
@@ -105,6 +104,8 @@
       $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
     });
 </script>
+
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
 </body>
 
