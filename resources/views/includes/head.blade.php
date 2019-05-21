@@ -10,16 +10,6 @@
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{asset('css/mdb.min.css')}}" rel="stylesheet">
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
-  @if(auth()->user())
-  <script>
-    window.user = {
-            id: {{ auth()->id() }},
-            name: "{{ auth()->user()->name }}"
-        };
-
-        window.csrfToken = "{{ csrf_token() }}";
-  </script>
-  @endif
 </head>
 
 <body>

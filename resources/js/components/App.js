@@ -10,7 +10,11 @@ var localStream;
 const Button = props => {
     return (
         <>
-            <button data-toggle="modal" data-target="#modalVideo">
+            <button
+                className="btn btn-success btn-md"
+                data-toggle="modal"
+                data-target="#modalVideo"
+            >
                 Call
             </button>
             {props.children}
@@ -29,7 +33,17 @@ const Modal = props => {
 };
 
 export default class App extends Component {
-    state = { hasMedia: null };
+    constructor() {
+        super();
+
+        this.state = { hasMedia: null, otherUserId: null };
+
+        this.user = window.user;
+        this.user.stream = null;
+        this.other = window.otherUser;
+        this.peers = {};
+        this.setupPusher();
+    }
 
     getMedia = () => {
         return new Promise((res, rej) => {
@@ -40,9 +54,10 @@ export default class App extends Component {
         });
     };
 
-    connect = () => {
-        this.getMedia().then(stream => {
+    connect = async () => {
+        await this.getMedia().then(stream => {
             this.setState({ hasMedia: true });
+            this.user.stream = stream;
             localStream = stream;
             try {
                 this.myVideo.srcObject = stream;
@@ -51,6 +66,7 @@ export default class App extends Component {
             }
             this.myVideo.play();
         });
+        this.callTo(this.other);
     };
 
     stop = () => {
@@ -59,6 +75,67 @@ export default class App extends Component {
             localStream.getVideoTracks()[0].stop();
             this.myVideo.src = "";
         }
+    };
+
+    setupPusher = () => {
+        this.pusher = new Pusher(APP_KEY, {
+            authEndpoint: "/pusher/auth",
+            cluster: "ap2",
+            auth: {
+                params: this.user.id,
+                header: {
+                    "X-CSRF-Token": window.csrfToken
+                }
+            }
+        });
+
+        this.channel = this.pusher.subscribe("presence-video-channel");
+
+        this.channel.bind(`client-signal-${this.user.id}`, signal => {
+            let peer = this.peers[signal.userId];
+
+            if (peer === undefined) {
+                this.setState({ otherUserId: signal.userId });
+                peer = this.startPeer(signal.userId, false);
+            }
+        });
+    };
+
+    startPeer = (userId, initiator) => {
+        const peer = new Peer({
+            initiator,
+            stream: this.user.stream,
+            trickle: false
+        });
+
+        peer.on("signal", data => {
+            this.channel.trigger(`client-signal-${userId}`, {
+                type: "signal",
+                useId: this.user.id,
+                data: data
+            });
+        });
+
+        peer.on("stream", stream => {
+            try {
+                this.userVideo.srcObject = stream;
+            } catch (e) {
+                this.userVideo.src = URL.createObjectURL(stream);
+            }
+            this.userVideo.play();
+        });
+
+        peer.on("close", () => {
+            let peer = this.peers[userId];
+            if (peer !== undefined) {
+                peer.destroy();
+            }
+            this.peers[userId] = undefined;
+        });
+    };
+
+    callTo = userId => {
+        this.peers[userId] = this.startPeer(userId);
     };
 
     allow = (
@@ -73,13 +150,13 @@ export default class App extends Component {
                 <video
                     className="other-video"
                     ref={ref => {
-                        this.otherVideo = ref;
+                        this.userVideo = ref;
                     }}
                 />
             </div>
             <p className="text-muted mb-0 pl-2">
                 <small>
-                    Close through "CLOSE" button or else it wont fully stop
+                    Close through "CLOSE" button or else it wont fully stop.
                 </small>
             </p>
             <div className="modal-footer m-0 py-0">

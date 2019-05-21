@@ -1,5 +1,5 @@
 <div class="container">
-  <form method="POST" action='{{route('doctor')}}' enctype="multipart/form-data">
+  <form method="POST" action="{{ route('doctor') }}" enctype="multipart/form-data">
     @csrf
     <div class="card mb-4">
       <div class="card-body text-center">
@@ -9,8 +9,7 @@
               <div class="col-md-6">
                 <div class="md-form">
                   <input type="text" name='first_name' id='first_name'
-                    class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}"
-                    required>
+                    class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required>
                   <label for="first_name">First name</label>
                   @error('first_name')
                   <span class="invalid-feedback" role="alert">
@@ -22,8 +21,7 @@
               <div class="col-md-6">
                 <div class="md-form">
                   <input type="text" name='last_name' id='last_name'
-                    class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}"
-                    required>
+                    class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" required>
                   <label for="last_name">Last name</label>
                   @error('last_name')
                   <span class="invalid-feedback" role="alert">
@@ -106,8 +104,8 @@
           </div>
           <div class="col-md-6">
             <div class="md-form">
-              <input type="text" name='cur_work' id='cur_work'
-                class="form-control @error('cur_work') is-invalid @enderror" value="{{ old('cur_work') }}" required>
+              <input type="text" name='cur_work' id='cur_work' class="form-control @error('cur_work') is-invalid @enderror"
+                value="{{ old('cur_work') }}" required>
               <label for="cur_work">Currently Working At</label>
               @error('cur_work')
               <span class="invalid-feedback" role="alert">
@@ -117,8 +115,8 @@
             </div>
 
             <div class="md-form">
-              <input type="text" name='prev_work' id='prev_work'
-                class="form-control @error('prev_work') is-invalid @enderror" value="{{ old('prev_work') }}" required>
+              <input type="text" name='prev_work' id='prev_work' class="form-control @error('prev_work') is-invalid @enderror"
+                value="{{ old('prev_work') }}" required>
               <label for="prev_work">Previouly Worked At</label>
               @error('prev_work')
               <span class="invalid-feedback" role="alert">

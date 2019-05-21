@@ -16,9 +16,10 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'Auth\UserRegisterController@update_doctor')->name('doctor');
+Route::post('/home/doctor', 'Auth\UserRegisterController@update_doctor')->name('doctor');
 
-Route::post('/home', 'Auth\UserRegisterController@update_patient')->name('patient');
+Route::post('/home/patient', 'Auth\UserRegisterController@update_patient')->name('patient');
+
 
 Auth::routes();
 
@@ -30,7 +31,8 @@ Route::prefix('admin')->group(function() {
 
 Route::get('/category/{type}', 'HomeController@category')->name('category');
 
-Route::get('/profile/{cat_email}', 'AppointController@index')->name('profile');
+Route::get('/profile/patient/{cat_email}', 'AppointController@index_patient')->name('prof');
+Route::get('/profile/doctor/{cat_email}', 'AppointController@index')->name('profile');
 
 Route::post('/profile/{abc}', 'AppointController@create')->name('appoint');
 

@@ -6,8 +6,8 @@
         ->get();
 ?>
 <li class="nav-item dropdown notifications-nav">
-    <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         <span class="badge red">{{$data->count()}}</span> <i class="fas fa-bell"></i>
         <span class="d-none d-md-inline-block">Notifications</span>
     </a>
@@ -17,11 +17,11 @@
         @foreach ($data as $dat)
         <?php $get = DB::table('doctors')->where('email', $dat->doctor_email)->first();?>
         @if ($dat->app_status === 'pending')
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{route('profile', $dat->doctor_email)}}">
             <span>Request Sent to: <b>{{$get->first_name}}</b></span>
         </a>
         @else
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{route('profile', $dat->doctor_email)}}">
             <span>Approved from: <b>{{$get->first_name}}</b></span>
         </a>
         @endif
@@ -30,11 +30,11 @@
         @foreach ($data as $dat)
         <?php $get = DB::table('patients')->where('email', $dat->patient_email)->first();?>
         @if ($dat->app_status === 'pending')
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{route('prof', $dat->patient_email)}}">
             <span>Request from: <b>{{$get->first_name}}</b></span>
         </a>
         @else
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{route('prof', $dat->patient_email)}}">
             <span>Approved request of: <b>{{$get->first_name}}</b></span>
         </a>
         @endif

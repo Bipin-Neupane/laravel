@@ -1,5 +1,6 @@
 <?php 
-    $relation = DB::table('relations')->where('doctor_email', $profile->email)->first();
+    $turnary = Auth::user()->user_type === 'doctor' ? 'patient_email' : 'doctor_email';
+    $relation = DB::table('relations')->where($turnary, $profile->email)->first();
 ?>
 @include('includes.head')
 @include('layouts.partials.header')
@@ -7,7 +8,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 d-flex flex-column pl-0 left">
-                <div class="prof-img z-depth-2 mb-2"> <img src="{{url('img/doctor/profile/'.$profile->image)}}"> </div>
+                <div class="prof-img z-depth-2 mb-2">
+                    <?php $you = DB::table('users')->where('email', $profile->email)->first();?>
+                    @if ($you->user_type === 'doctor')
+                    <img src="{{url('img/doctor/profile/'.$profile->image)}}">
+                    @else
+                    <img src="{{url('img/patient/profile/'.$profile->image)}}">
+                    @endif
+                </div>
                 <div class="pt-2">
                     <p class="text-muted">Work</p>
                 </div>
@@ -15,6 +23,7 @@
                     <h5 class="lead">{{$profile->cur_work}}</h5>
                     <p class="grey lighten-1 text-white px-2">Present</p>
                 </div>
+                @if ($you->user_type === 'doctor')
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="lead">{{$profile->prev_work}}</h5>
                     <p class="grey lighten-1 text-white px-2">Previously</p>
@@ -37,6 +46,7 @@
                     10+ yrs
                     @endswitch
                 </p>
+                @endif
             </div>
             <div class="col-lg-8 col-md-8 d-flex flex-column">
                 <div>
@@ -45,27 +55,47 @@
                         <i class="fas fa-map-marker-alt"></i>
                         {{$profile->address}}
                     </span>
+                    @if ($you->user_type === 'doctor')
                     <p>{{$profile->category === 0 ? 'Physician' : 'Psychiatrist'}}</p>
+                    @endif
                 </div>
+                @if ($you->user_type === 'doctor')
                 <div class="py-2">
                     <p class="text-muted mb-1">Likes</p>
                     <p><i class="far fa-thumbs-up"></i>: {{$profile->rating}}</p>
                 </div>
-                @if (Auth::user()->user_type === 'patient')
-                @if ($relation)
+                @endif
+                @if (Auth::user()->user_type === 'patient' && !$relation)
                 <div>
                     <a class="btn z-depth-0 elegant-color text-white py-2 ml-0" data-toggle="modal"
-                        data-target="#modalLoginForm">Appointed</a>
+                        data-target="#modalLoginForm">Appoint Now</a>
                     {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
                 </div>
-                @else
+                @endif
+
+                @if (Auth::user()->user_type === 'patient' && $relation)
+                @if ($relation->app_status === 'pending')
                 <div>
-                    <a class="btn z-depth-0 elegant-color text-white py-2 ml-0" data-toggle="modal"
-                        data-target="#modalVideo">Appoint Now</a>
+                    <a class="btn z-depth-0 red text-white py-2 ml-0">Waiting for approval</a>
                     {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
                 </div>
                 @endif
                 @endif
+
+                @if (Auth::user()->user_type === 'doctor' && $relation)
+                @if ($relation->app_status === 'pending')
+                <div>
+                    <a class="btn z-depth-0 elegant-color text-white py-2 ml-0 mt-2" data-toggle="modal"
+                        data-target="#modalLoginForm">Confirm Request</a>
+                    {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
+                </div>
+                @endif
+                @endif
+
+                @if ($relation && $relation->app_status === 'approved')
+                <div id="videoChat"></div>
+                @endif
+
                 <div class="py-3 right">
                     <h4>About</h4>
                     <hr>
@@ -100,8 +130,6 @@
         </div>
     </div>
 </div>
-
-<div id="videoChat"></div>
 
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -104,6 +104,15 @@
       $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
     });
 </script>
+@if (Auth::user())
+<script>
+  window.user = {
+    id: {{auth()->id()}},
+    name: '{{auth()->user()->name}}'
+  };
+  window.csrfToken = "{{ csrf_token() }}";
+</script>
+@endif
 
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 

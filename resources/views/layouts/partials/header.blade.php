@@ -1,3 +1,11 @@
+<?php
+  if (Auth::user()->user_type === 'doctor'){
+    $users = DB::table('doctors')->where('email', Auth::user()->email)->first();
+  }
+  if (Auth::user()->user_type === 'patient'){
+    $users = DB::table('patients')->where('email', Auth::user()->email)->first();
+  }
+  ?>
 <header>
   <nav class="navbar navbar-expand-lg navbar-light white fixed-top">
     <div class="container-fluid">
@@ -7,6 +15,7 @@
       </button>
       <div id='navCol' class="collapse navbar-collapse">
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
+          @if ($users->submit_status === 'submitted')
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor's Category</a>
             <div class="dropdown-menu pb-1">
@@ -14,6 +23,7 @@
               <a href="{{route('category', 'psychiatrist')}}" class="dropdown-item">PSYCHIATRIST</a>
             </div>
           </li>
+          @endif
 
           @include('layouts.partials.notification')
 
@@ -21,24 +31,15 @@
             <a class="nav-link dropdown-toggle d-flex" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" style="margin-top: 2px;">
               <p class="align-self-center mb-0 mr-2 text-capitalize">{{Auth::user()->name}}</p>
-              <?php
-              if (Auth::user()->user_type === 'doctor'){
-                $users = DB::table('doctors')->where('email', Auth::user()->email)->first();
-              }
-              if (Auth::user()->user_type === 'patient'){
-                $users = DB::table('patients')->where('email', Auth::user()->email)->first();
-              }
-              ?>
               @if ($users->image)
-              <img src="{{url('img/'.Auth::user()->user_type.'/profile/'.$users->image)}}"
-                class="rounded-circle z-depth-0" alt="avatar image" style="width:35px;">
+              <img src="{{url('img/'.Auth::user()->user_type.'/profile/'.$users->image)}}" class="rounded-circle z-depth-0"
+                alt="avatar image" style="width:35px;">
               @else
               <img src="{{url('img/avatar-d.png')}}" class="rounded-circle z-depth-0" alt="avatar image">
               @endif
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right dropdown-secondary pb-1"
-              aria-labelledby="navbarDropdownMenuLink-55">
+            <div class="dropdown-menu dropdown-menu-right dropdown-secondary pb-1" aria-labelledby="navbarDropdownMenuLink-55">
               <a class="dropdown-item" href="{{route('my_profile')}}">My account</a>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">Log Out</a>
