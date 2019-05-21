@@ -80,8 +80,8 @@
             </div>
 
             <div class="md-form">
-              <input type="number" name='contact' id='contact' class="form-control @error('contact') is-invalid @enderror"
-                value="{{ old('contact') }}" required>
+              <input type="number" name='contact' id='contact'
+                class="form-control @error('contact') is-invalid @enderror" value="{{ old('contact') }}" required>
               <label for="contact">Contact</label>
               @error('contact')
               <span class="invalid-feedback" role="alert">

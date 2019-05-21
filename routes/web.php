@@ -16,9 +16,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'Auth\UserRegisterController@update_doctor')->name('doctor');
-
 Route::post('/home', 'Auth\UserRegisterController@update_patient')->name('patient');
+Route::post('/home', 'Auth\UserRegisterController@update_doctor')->name('doctor');
 
 Auth::routes();
 
