@@ -10,11 +10,7 @@ var localStream;
 const Button = props => {
     return (
         <>
-            <button
-                className="btn btn-success btn-md"
-                data-toggle="modal"
-                data-target="#modalVideo"
-            >
+            <button className="btn btn-success btn-md mx-0" data-toggle="modal" data-target="#modalVideo">
                 Call
             </button>
             {props.children}
@@ -155,22 +151,13 @@ export default class App extends Component {
                 />
             </div>
             <p className="text-muted mb-0 pl-2">
-                <small>
-                    Close through "CLOSE" button or else it wont fully stop.
-                </small>
+                <small>Close through "CLOSE" button or else it wont fully stop.</small>
             </p>
             <div className="modal-footer m-0 py-0">
-                <button
-                    className="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                    onClick={this.stop}
-                >
+                <button className="btn btn-secondary btn-sm" data-dismiss="modal" onClick={this.stop}>
                     Close
                 </button>
-                <button
-                    className="btn btn-primary btn-sm"
-                    onClick={this.connect}
-                >
+                <button className="btn btn-primary btn-sm" onClick={this.connect}>
                     Call
                 </button>
             </div>
@@ -183,10 +170,7 @@ export default class App extends Component {
                 <h3 className="mb-0 text-white">Error</h3>
             </div>
             <div className="modal-body text-center">
-                <p className="mb-0">
-                    Please enable your webcam and mic and reload to use this
-                    feature.
-                </p>
+                <p className="mb-0">Please enable your webcam and mic and reload to use this feature.</p>
             </div>
         </>
     );
@@ -194,9 +178,7 @@ export default class App extends Component {
     render() {
         return (
             <Button>
-                <Modal>
-                    {this.state.hasMedia === false ? this.err : this.allow}
-                </Modal>
+                <Modal>{this.state.hasMedia === false ? this.err : this.allow}</Modal>
             </Button>
         );
     }
