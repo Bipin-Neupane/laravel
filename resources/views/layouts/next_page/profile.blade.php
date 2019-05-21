@@ -1,5 +1,6 @@
 <?php 
-    $relation = DB::table('relations')->where('doctor_email', $profile->email)->first();
+    $turnary = Auth::user()->user_type === 'doctor' ? 'patient_email' : 'doctor_email';
+    $relation = DB::table('relations')->where($turnary, $profile->email)->first();
 ?>
 @include('includes.head')
 @include('layouts.partials.header')
@@ -7,7 +8,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 d-flex flex-column pl-0 left">
-                <div class="prof-img z-depth-2 mb-2"> <img src="{{url('img/doctor/profile/'.$profile->image)}}"> </div>
+                <div class="prof-img z-depth-2 mb-2">
+                    <?php $you = DB::table('users')->where('email', $profile->email)->first();?>
+                    @if ($you->user_type === 'doctor')
+                    <img src="{{url('img/doctor/profile/'.$profile->image)}}">
+                    @else
+                    <img src="{{url('img/patient/profile/'.$profile->image)}}">
+                    @endif
+                </div>
                 <div class="pt-2">
                     <p class="text-muted">Work</p>
                 </div>
@@ -15,6 +23,7 @@
                     <h5 class="lead">{{$profile->cur_work}}</h5>
                     <p class="grey lighten-1 text-white px-2">Present</p>
                 </div>
+                @if ($you->user_type === 'doctor')
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="lead">{{$profile->prev_work}}</h5>
                     <p class="grey lighten-1 text-white px-2">Previously</p>
@@ -37,6 +46,7 @@
                     10+ yrs
                     @endswitch
                 </p>
+                @endif
             </div>
             <div class="col-lg-8 col-md-8 d-flex flex-column">
                 <div>
@@ -45,27 +55,50 @@
                         <i class="fas fa-map-marker-alt"></i>
                         {{$profile->address}}
                     </span>
+                    @if ($you->user_type === 'doctor')
                     <p>{{$profile->category === 0 ? 'Physician' : 'Psychiatrist'}}</p>
+                    @endif
                 </div>
+                @if ($you->user_type === 'doctor')
                 <div class="py-2">
                     <p class="text-muted mb-1">Likes</p>
                     <p><i class="far fa-thumbs-up"></i>: {{$profile->rating}}</p>
                 </div>
-                @if (Auth::user()->user_type === 'patient')
-                @if ($relation)
+                @endif
+                @if (Auth::user()->user_type === 'patient' && !$relation)
                 <div>
                     <a class="btn z-depth-0 elegant-color text-white py-2 ml-0" data-toggle="modal"
-                        data-target="#modalLoginForm">Appointed</a>
+                        data-target="#modalLoginForm">Appoint Now</a>
                     {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
                 </div>
-                @else
+                @endif
+
+                @if (Auth::user()->user_type === 'patient' && $relation)
+                @if ($relation->app_status === 'pending')
                 <div>
-                    <a class="btn z-depth-0 elegant-color text-white py-2 ml-0" data-toggle="modal"
-                        data-target="#modalVideo">Appoint Now</a>
+                    <a class="btn z-depth-0 red text-white py-2 ml-0">Waiting for approval</a>
                     {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
                 </div>
                 @endif
                 @endif
+
+                @if (Auth::user()->user_type === 'doctor' && $relation)
+                <div>
+                    <a class="btn z-depth-0 bg-danger py-2 ml-0 mt-2" data-toggle="modal"
+                        data-target="#modalProblem">Problem
+                        Info</a>
+                    @if ($relation->app_status === 'pending')
+                    <a class="btn z-depth-0 elegant-color text-white py-2 ml-0 mt-2" data-toggle="modal"
+                        data-target="#modalConfirm">Confirm Request</a>
+                    {{-- <button class="btn z-depth-0 py-2"><span class=" text-muted"> Report User</span></button> --}}
+                    @endif
+                </div>
+                @endif
+
+                @if ($relation && $relation->app_status === 'approved')
+                <div id="videoChat"></div>
+                @endif
+
                 <div class="py-3 right">
                     <h4>About</h4>
                     <hr>
@@ -101,8 +134,7 @@
     </div>
 </div>
 
-<div id="videoChat"></div>
-
+@if (Auth::user()->user_type === 'patient')
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,8 +155,8 @@
 
                     <div class="md-form">
                         <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea type="text" id="problems_detail" name='problems_detail' class="md-textarea form-control"
-                            rows="4" autocomplete="false" required></textarea>
+                        <textarea type="text" id="problems_detail" name='problems_detail'
+                            class="md-textarea form-control" rows="4" autocomplete="false" required></textarea>
                         <label for="problems_detail">Problems In Detail</label>
                     </div>
 
@@ -135,7 +167,8 @@
                                 <input type="file" name='report' id='report'>
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path" disabled type="text" placeholder="Upload your report if available">
+                                <input class="file-path" disabled type="text"
+                                    placeholder="Upload your report if available">
                             </div>
                         </div>
                     </div>
@@ -148,4 +181,84 @@
         </div>
     </div>
 </div>
+@endif
+
+@if (Auth::user()->user_type === 'doctor' && $relation)
+@if ($relation->app_status === 'pending')
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action='{{route('appoint', $profile->email)}}' enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h3 class="mb-0">Confirm request!</h3>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p><b>{{$profile->first_name}} {{$profile->last_name}} </b>wants to have treatment with you.
+                        </p>
+                    </div>
+                    <div class="md-form mt-0">
+                        <input type="date" name='date' id="date" class="form-control datepicker" required>
+                        <label for="date">Select Date</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text" name='time' id="time" class="form-control timepicker" required>
+                        <label for="time">Select Time</label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <p class="mb-0">Are you sure you want to do this?</p>
+                    <button type="submit" class="btn btn-secondary">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+<div class="modal fade" id="modalProblem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Problem Info</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div>
+                    <h4>Problem Title</h4>
+                    <div class="card">
+                        <div class="card-body py-0">
+                            <p class="my-2">{{$relation->problems}}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <h4>Problem Details</h4>
+                    <div class="card" style='min-height: 150px;'>
+                        <div class="card-body py-2">
+                            <p class="mb-0">{{$relation->problems_detail}}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <h4>Reports</h4>
+                    <div class="row">
+                        <div class="col-12">
+                            @if ($relation->report)
+                            <img src="{{url('img/user/report/'.$relation->report)}}" alt="report">
+                            @else
+                            <p class="my-2">No image provided.</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @include('includes.footer')

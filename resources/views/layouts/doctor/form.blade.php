@@ -1,5 +1,5 @@
 <div class="container">
-  <form method="POST" action='{{route('doctor')}}' enctype="multipart/form-data">
+  <form method="POST" action="{{ route('doctor') }}" enctype="multipart/form-data">
     @csrf
     <div class="card mb-4">
       <div class="card-body text-center">

@@ -19,6 +19,16 @@ class AppointController extends Controller
         }
     }
 
+    public function index_patient($abc) 
+    {
+        $profile = App\Patient::where('email', $abc)->first();
+        if ($profile) {
+            return view('layouts.next_page.profile', compact('profile'));            
+        } else {    
+            return "Page not found";
+        }
+    }
+
     public function create(Request $request, $abc)
     {
         $this->validate($request, [

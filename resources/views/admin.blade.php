@@ -1,5 +1,5 @@
 @include('includes.head')
-<header>
+<header style="margin-top: -55px">
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark">
         <div class="container-fluid">
@@ -32,4 +32,42 @@
     </nav>
     <!--/Navbar-->
 </header>
-@include('includes.footer')
+
+@include('layouts.admin.body')
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
+<!-- Custom scripts -->
+<script>
+    // Animation init
+    new WOW().init();
+    // Select initiate
+    $(document).ready(function() {
+      $('.mdb-select').materialSelect();
+    });
+    $(function () {
+      $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+    });
+</script>
+@if (Auth::user())
+<script>
+    window.user = {
+    id: {{auth()->id()}},
+    name: '{{auth()->user()->name}}'
+  };
+  window.csrfToken = "{{ csrf_token() }}";
+</script>
+@endif
+
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
+</body>
+
+</html>

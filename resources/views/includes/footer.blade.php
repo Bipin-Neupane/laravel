@@ -100,10 +100,20 @@
     $(document).ready(function() {
       $('.mdb-select').materialSelect();
     });
-    $(function () {
-      $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+    $('.datepicker').pickadate( {
+      min:true
     });
+    $('#time').pickatime({});
 </script>
+@if (Auth::user())
+<script>
+  window.user = {
+    id: {{auth()->id()}},
+    name: '{{auth()->user()->name}}'
+  };
+  window.csrfToken = "{{ csrf_token() }}";
+</script>
+@endif
 
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
