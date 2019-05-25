@@ -99,11 +99,11 @@
     // Select initiate
     $(document).ready(function() {
       $('.mdb-select').materialSelect();
+      $('.timepicker').pickatime({});
+      $('.datepicker').pickadate( {
+        min:true
+      });
     });
-    $('.datepicker').pickadate( {
-      min:true
-    });
-    $('#time').pickatime({});
 </script>
 @if (Auth::user())
 <script>

@@ -25,7 +25,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        $doctors = App\Doctor::get();
+        $approved = App\Doctor::where('registration_status', 'approved')->get();
+        $pending = App\Doctor::where('registration_status', 'pending')->get();
+        $patients = App\Patient::get();
+        $total_appointments = App\Relation::get();
+        $pending_appointments = App\Relation::where('status', 'pending')->get();
+        $completed_appointments = App\Relation::where('status', 'completed')->get();
+        $highly_rated = App\Doctor::orderBy('rating', 'desc')->first();
+        $low_rated = App\Doctor::orderBy('rating', 'asc')->first();
+        return view('admin', compact('doctors', 'approved', 'pending', 'patients', 'total_appointments', 'pending_appointments', 'completed_appointments', 'highly_rated', 'low_rated'));
     }
 
     public function add_doctor(Request $request) {
@@ -99,6 +108,37 @@ class AdminController extends Controller
                 'email' => $request->email,
                 ]);
 
-        return view('admin');
+        return redirect()->to('admin');
     }
+
+    public function delete_user($email) {
+        $user = App\User::where('email', $email)->first();
+        if ($user->user_type === 'doctor') {
+            App\User::where('email', $email)->delete();
+            App\Doctor::where('email', $email)->delete();
+            App\Relation::where('doctor_email', $email)->delete();
+        } else {
+            App\User::where('email', $email)->delete();
+            App\Patient::where('email', $email)->delete();
+            App\Relation::where('patient_email', $email)->delete();
+        }
+        return redirect()->to('admin');
+    }
+
+    public function profile($email) {
+        $you = App\User::where('email', $email)->first();
+        if ($you->user_type === "doctor") {
+            $profile = App\Doctor::where('email', $email)->first();
+        } else {
+            $profile = App\Patient::where('email', $email)->first();
+        }
+        return view('layouts.admin.profile', compact('you', 'profile'));
+    }
+
+    public function approve($email) {
+        App\Doctor::where('email', $email)
+            ->update(['registration_status' => 'approved']);
+        return redirect()->to('admin');
+    }
+
 }

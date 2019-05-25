@@ -29,7 +29,20 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-Route::post('/admin', 'AdminController@add_doctor')->name('add_doctor');
+Route::get('/admin', 'AdminController@index');
+Route::post('/admin/add', 'AdminController@add_doctor')->name('add_doctor');
+Route::get('/admin/add', function() {
+    return redirect()->to('admin');
+});
+Route::post('/admin/delete/{email}', 'AdminController@delete_user')->name('delete');
+Route::post('/admin/approve/{email}', 'AdminController@approve')->name('approve');
+
+Route::get('/admin/delete/{email}', function() {
+    return redirect()->to('admin');
+});
+
+Route::get('/admin/profile/{email}', 'AdminController@profile')->name('admin_profile');
+
 
 Route::get('/category/{type}', 'HomeController@category')->name('category');
 
@@ -39,3 +52,6 @@ Route::get('/profile/doctor/{cat_email}', 'AppointController@index')->name('prof
 Route::post('/profile/{abc}', 'AppointController@create')->name('appoint');
 
 Route::get('/my_profile', 'HomeController@profile')->name('my_profile');
+
+Route::post('/profile/patient/{cat_email}', 'ConfirmController@confirm')->name('confirm');
+

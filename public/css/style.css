@@ -84,4 +84,71 @@ li.active a {
     #profile .left {
         padding-left: 15px !important;
     }
+    .resp-sm {
+        width: 70% !important;
+    }
+    #space {
+        display: none;
+    }
+}
+
+.resp-sm {
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    top: 0;
+    padding-top: 56px;
+    left: -100%;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    transition: all 0.3s ease;
+    z-index: 500;
+    position: fixed;
+}
+
+.togglesidebar {
+    left: 0 !important;
+}
+
+#space {
+    width: 0;
+    transition: width 0.3s;
+}
+
+.togglespace {
+    width: 250px !important;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.show-tab {
+    display: block !important;
+}
+
+.dashboard .card {
+    min-height: 226px;
+    margin-bottom: 10px;
+}
+
+.dashboard .card-title {
+    color: #fff !important;
+}
+
+#sidebar .link {
+    padding: 0.5rem;
+}
+
+#sidebar .link a {
+    color: #fff;
+}
+
+#sidebar .link.active {
+    background: #fff;
+}
+
+#sidebar .link.active a {
+    color: #333;
 }

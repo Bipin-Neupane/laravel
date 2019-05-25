@@ -1,6 +1,10 @@
 <?php 
     $turnary = Auth::user()->user_type === 'doctor' ? 'patient_email' : 'doctor_email';
-    $relation = DB::table('relations')->where($turnary, $profile->email)->first();
+    $turnary2 = $turnary === 'patient_email' ? 'doctor_email': 'patient_email';
+    $relation = DB::table('relations')
+        ->where($turnary, $profile->email)
+        ->where($turnary2, Auth::user()->email)
+        ->first();
 ?>
 @include('includes.head')
 @include('layouts.partials.header')
@@ -96,7 +100,39 @@
                 @endif
 
                 @if ($relation && $relation->app_status === 'approved')
-                <div id="videoChat"></div>
+                <p class="mt-1 mb-0" id="timecount"></p>
+                <div id="videoChat" style="display:none"></div>
+                <script>
+                    // Set the date we're counting down to
+                    var countDownDate = new Date("{{$relation->time}}").getTime();
+                    
+                    // Update the count down every 1 second
+                    var x = setInterval(function() {
+                    
+                        // Get today's date and time
+                        var now = new Date().getTime();
+                    
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate - now;
+                    
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                        // Display the result in the element with id="demo"
+                        document.getElementById("timecount").innerHTML = days + "d " + hours + "h "
+                        + minutes + "m " + seconds + "s " + "left";
+                    
+                        // If the count down is finished, write some text 
+                        if (distance < 0) {
+                            clearInterval(x);
+                            document.getElementById("timecount").innerHTML = "";
+                            document.getElementById('videoChat').style.display = 'block';
+                            }
+                    }, 1000);
+                </script>
                 @endif
 
                 <div class="py-3 right">
@@ -188,7 +224,7 @@
 <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action='{{route('appoint', $profile->email)}}' enctype="multipart/form-data">
+            <form method="POST" action='{{route('confirm', $profile->email)}}' enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h3 class="mb-0">Confirm request!</h3>
@@ -249,7 +285,7 @@
                     <div class="row">
                         <div class="col-12">
                             @if ($relation->report)
-                            <img src="{{url('img/user/report/'.$relation->report)}}" alt="report">
+                            <img class="img-fluid" src="{{url('img/user/report/'.$relation->report)}}" alt="report">
                             @else
                             <p class="my-2">No image provided.</p>
                             @endif

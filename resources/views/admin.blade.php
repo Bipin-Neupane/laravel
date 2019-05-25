@@ -1,36 +1,42 @@
 @include('includes.head')
+<?php
+  $total_doc = $doctors->count();
+  $total_pat = $patients->count();
+  $total_user = $total_doc + $total_pat;
+  if ($total_user === 0 ) {
+    $doc_percent = 0;
+    $pat_percent = 0;
+  } else {
+    $doc_percent = $total_doc/$total_user * 100;
+    $pat_percent = $total_pat/$total_user * 100;
+  }
+  if ($total_doc === 0) {
+    $approved_percent = 0;
+    $pending_percent = 0;
+  } else {
+    $approved_percent = $approved->count()/$total_doc * 100;
+    $pending_percent = $pending->count()/$total_doc * 100;
+  }
+  $total_app = $total_appointments->count();
+
+  if ($total_app === 0 ) {
+    $comp_app_percent = 0;
+    $pend_app_percent = 0;
+  } else {
+    $comp_app_percent = $completed_appointments->count()/$total_app * 100;
+    $pend_app_percent = $pending_appointments->count()/$total_app * 100;
+  }
+
+?>
 <header style="margin-top: -55px">
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark">
-        <div class="container-fluid">
-            <a href="{{route('home')}}" class="navbar-brand">Virtual Clinic</a>
-            <button class="navbar-toggler" data-toggle='collapse' data-target='#navCol'>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id='navCol' class="collapse navbar-collapse">
-                <ul class="nav navbar-nav nav-flex-icons ml-auto">
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--/Navbar-->
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark fixed-top" style="z-index: 999;">
+    <div class="container-fluid">
+      <span class="navbar-toggler-icon" id='toggleside'></span>
+      <a href='#' class="navbar-brand ml-5">Virtual Clinic</a>
+    </div>
+  </nav>
+  <!--/Navbar-->
 </header>
 
 @include('layouts.admin.body')
@@ -46,25 +52,38 @@
 <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
 <!-- Custom scripts -->
 <script>
-    // Animation init
+  // Animation init
     new WOW().init();
     // Select initiate
     $(document).ready(function() {
       $('.mdb-select').materialSelect();
     });
-    $(function () {
-      $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+
+    $('#toggleside').click(function() {
+        $('#sidebar').toggleClass('togglesidebar');
+        $('#space').toggleClass('togglespace');
     });
 </script>
-@if (Auth::user())
+
 <script>
-    window.user = {
-    id: {{auth()->id()}},
-    name: '{{auth()->user()->name}}'
-  };
-  window.csrfToken = "{{ csrf_token() }}";
+  const tabs = document.querySelectorAll('.tab');
+    function samk(e) {
+        removeActive();
+        hideAll();
+        this.parentNode.classList.add('active');
+        const target = `#${this.id}-panel`;
+        document.querySelector(target).classList.add('show-tab');
+    }
+    function removeActive() {
+        tabs.forEach(tab => tab.parentNode.classList.remove('active'));
+    }
+    function hideAll() {
+        const tabPanel = document.querySelectorAll('.tab-panel');
+        tabPanel.forEach(panel => panel.classList.remove('show-tab'));
+    }
+
+    tabs.forEach(tab => tab.addEventListener('click', samk));
 </script>
-@endif
 
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
