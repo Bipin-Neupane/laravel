@@ -6,9 +6,15 @@
 .main-vid .my-video {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 4px;
     height: 26%;
     width: 26%;
+}
+
+.main-vid .other-video {
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
 }
 
 @media (max-width: 768px) {

@@ -2194,7 +2194,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".main-vid {\r\n    position: relative;\r\n    height: 500px;\r\n}\r\n\r\n.main-vid .my-video {\r\n    position: absolute;\r\n    right: 0;\r\n    bottom: 0;\r\n    height: 26%;\r\n    width: 26%;\r\n}\r\n\r\n@media (max-width: 768px) {\r\n    .my-video {\r\n        display: none;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, ".main-vid {\r\n    position: relative;\r\n    height: 500px;\r\n}\r\n\r\n.main-vid .my-video {\r\n    position: absolute;\r\n    right: 0;\r\n    bottom: 4px;\r\n    height: 26%;\r\n    width: 26%;\r\n}\r\n\r\n.main-vid .other-video {\r\n    -o-object-fit: fill;\r\n       object-fit: fill;\r\n    height: 100%;\r\n    width: 100%;\r\n}\r\n\r\n@media (max-width: 768px) {\r\n    .my-video {\r\n        display: none;\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -43041,7 +43041,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var APP_KEY = "83c9614fa128f8d6027a";
+var APP_KEY = "074d818400dba417dcfd";
 var localStream;
 
 var Button = function Button(props) {
@@ -43119,7 +43119,7 @@ function (_Component) {
               });
 
             case 2:
-              _this.callTo(_this.other);
+              _this.callTo(window.conUser);
 
             case 3:
             case "end":
@@ -43130,6 +43130,8 @@ function (_Component) {
     })));
 
     _defineProperty(_assertThisInitialized(_this), "stop", function () {
+      _this.connect();
+
       _this.setState({
         hasMedia: null
       });
@@ -43138,69 +43140,6 @@ function (_Component) {
         localStream.getVideoTracks()[0].stop();
         _this.myVideo.src = "";
       }
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "setupPusher", function () {
-      _this.pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_4___default.a(APP_KEY, {
-        authEndpoint: "/pusher/auth",
-        cluster: "ap2",
-        auth: {
-          params: _this.user.id,
-          header: {
-            "X-CSRF-Token": window.csrfToken
-          }
-        }
-      });
-      _this.channel = _this.pusher.subscribe("presence-video-channel");
-
-      _this.channel.bind("client-signal-".concat(_this.user.id), function (signal) {
-        var peer = _this.peers[signal.userId];
-
-        if (peer === undefined) {
-          _this.setState({
-            otherUserId: signal.userId
-          });
-
-          peer = _this.startPeer(signal.userId, false);
-        }
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "startPeer", function (userId, initiator) {
-      var peer = new simple_peer__WEBPACK_IMPORTED_MODULE_5___default.a({
-        initiator: initiator,
-        stream: _this.user.stream,
-        trickle: false
-      });
-      peer.on("signal", function (data) {
-        _this.channel.trigger("client-signal-".concat(userId), {
-          type: "signal",
-          useId: _this.user.id,
-          data: data
-        });
-      });
-      peer.on("stream", function (stream) {
-        try {
-          _this.userVideo.srcObject = stream;
-        } catch (e) {
-          _this.userVideo.src = URL.createObjectURL(stream);
-        }
-
-        _this.userVideo.play();
-      });
-      peer.on("close", function () {
-        var peer = _this.peers[userId];
-
-        if (peer !== undefined) {
-          peer.destroy();
-        }
-
-        _this.peers[userId] = undefined;
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "callTo", function (userId) {
-      _this.peers[userId] = _this.startPeer(userId);
     });
 
     _defineProperty(_assertThisInitialized(_this), "allow", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -43239,23 +43178,98 @@ function (_Component) {
     }, "Please enable your webcam and mic and reload to use this feature."))));
 
     _this.state = {
-      hasMedia: null,
+      hasMedia: false,
       otherUserId: null
     };
     _this.user = window.user;
     _this.user.stream = null;
-    _this.other = window.otherUser;
     _this.peers = {};
 
     _this.setupPusher();
 
+    _this.callTo = _this.callTo.bind(_assertThisInitialized(_this));
+    _this.setupPusher = _this.setupPusher.bind(_assertThisInitialized(_this));
+    _this.startPeer = _this.startPeer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
+    key: "setupPusher",
+    value: function setupPusher() {
+      var _this2 = this;
+
+      this.pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_4___default.a(APP_KEY, {
+        authEndpoint: "/pusher/auth",
+        cluster: "ap2",
+        auth: {
+          params: this.user.id,
+          headers: {
+            "X-CSRF-Token": window.csrfToken
+          }
+        }
+      });
+      this.channel = this.pusher.subscribe("presence-video-channel");
+      this.channel.bind("client-signal-".concat(this.user.id), function (signal) {
+        var peer = _this2.peers[signal.userId]; // if peer is not already exists, we got an incoming call
+
+        if (peer === undefined) {
+          _this2.setState({
+            otherUserId: signal.userId
+          });
+
+          peer = _this2.startPeer(signal.userId, false);
+        }
+
+        peer.signal(signal.data);
+      });
+    }
+  }, {
+    key: "startPeer",
+    value: function startPeer(userId) {
+      var _this3 = this;
+
+      var initiator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var peer = new simple_peer__WEBPACK_IMPORTED_MODULE_5___default.a({
+        initiator: initiator,
+        stream: this.user.stream,
+        trickle: false
+      });
+      peer.on("signal", function (data) {
+        _this3.channel.trigger("client-signal-".concat(userId), {
+          type: "signal",
+          userId: _this3.user.id,
+          data: data
+        });
+      });
+      peer.on("stream", function (stream) {
+        try {
+          _this3.userVideo.srcObject = stream;
+        } catch (e) {
+          _this3.userVideo.src = URL.createObjectURL(stream);
+        }
+
+        _this3.userVideo.play();
+      });
+      peer.on("close", function () {
+        var peer = _this3.peers[userId];
+
+        if (peer !== undefined) {
+          peer.destroy();
+        }
+
+        _this3.peers[userId] = undefined;
+      });
+      return peer;
+    }
+  }, {
+    key: "callTo",
+    value: function callTo(userId) {
+      this.peers[userId] = this.startPeer(userId);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Button, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Modal, null, this.state.hasMedia === false ? this.err : this.allow));
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Button, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Modal, null, this.allow));
     }
   }]);
 

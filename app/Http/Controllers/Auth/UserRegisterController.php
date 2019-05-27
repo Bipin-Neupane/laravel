@@ -73,8 +73,7 @@ class UserRegisterController extends Controller
                 'submit_status' => 'submitted',
                 ]);
                 
-        $users = DB::table('doctors')->where('email', $email)->first();
-        return view('home')->with('data', $users);
+        return redirect()->to('home');
     }
 
     public function update_patient(Request $request)
@@ -116,11 +115,6 @@ class UserRegisterController extends Controller
                 'submit_status' => 'submitted',
                 ]);
                 
-        $users = DB::table('patients')->where('email', $email)->first();    
-        $docs = DB::table('doctors')->where('email', $email)
-            ->where('registration_status', 'approved')
-            ->inRandomOrder()
-            ->get();
-        return view('home')->with('data', $users, 'docs', $docs);
+        return redirect()->to('home');
     }
 }

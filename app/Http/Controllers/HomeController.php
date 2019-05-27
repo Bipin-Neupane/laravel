@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use \Pusher\Pusher;
 
 class HomeController extends Controller
 {
@@ -63,4 +64,20 @@ class HomeController extends Controller
             return view('layouts.patient.profile')->with('data', $users);
         }
     }
+
+    public function authenticate(Request $request) {
+        $socketId = $request->socket_id;
+        $channelName = $request->channel_name;
+
+        $pusher = new Pusher('074d818400dba417dcfd', 'f7d4051e2f1b07ac28c8', '790050', [
+            'cluster' => 'ap2',
+            'encrypted' => true,
+        ]);
+
+        $presence_data = ['name' => auth()->user()->name];
+        $key = $pusher->presence_auth($channelName, $socketId, auth()->id(), $presence_data);
+
+        return response($key);
+    }
+
 }

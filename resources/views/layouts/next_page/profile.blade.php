@@ -4,6 +4,7 @@
     $relation = DB::table('relations')
         ->where($turnary, $profile->email)
         ->where($turnary2, Auth::user()->email)
+        ->where('status', 'pending')
         ->first();
 ?>
 @include('includes.head')
@@ -132,6 +133,8 @@
                             document.getElementById('videoChat').style.display = 'block';
                             }
                     }, 1000);
+
+                    window.conUser = {{$you->id}}
                 </script>
                 @endif
 
@@ -239,8 +242,8 @@
                         <label for="date">Select Date</label>
                     </div>
                     <div class="md-form">
-                        <input type="text" name='time' id="time" class="form-control timepicker" required>
-                        <label for="time">Select Time</label>
+                        <input type="text" name='time' id="timepicker" class="form-control timepicker" required>
+                        <label for="timepicker" style="width:100%">Select Time</label>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

@@ -4,7 +4,7 @@ import "./App.css";
 import Pusher from "pusher-js";
 import Peer from "simple-peer";
 
-const APP_KEY = "83c9614fa128f8d6027a";
+const APP_KEY = "074d818400dba417dcfd";
 var localStream;
 
 const Button = props => {
@@ -32,13 +32,20 @@ export default class App extends Component {
     constructor() {
         super();
 
-        this.state = { hasMedia: null, otherUserId: null };
+        this.state = {
+            hasMedia: false,
+            otherUserId: null
+        };
 
         this.user = window.user;
         this.user.stream = null;
-        this.other = window.otherUser;
         this.peers = {};
+
         this.setupPusher();
+
+        this.callTo = this.callTo.bind(this);
+        this.setupPusher = this.setupPusher.bind(this);
+        this.startPeer = this.startPeer.bind(this);
     }
 
     getMedia = () => {
@@ -62,10 +69,11 @@ export default class App extends Component {
             }
             this.myVideo.play();
         });
-        this.callTo(this.other);
+        this.callTo(window.conUser);
     };
 
     stop = () => {
+        this.connect();
         this.setState({ hasMedia: null });
         if (localStream.getVideoTracks) {
             localStream.getVideoTracks()[0].stop();
@@ -73,13 +81,13 @@ export default class App extends Component {
         }
     };
 
-    setupPusher = () => {
+    setupPusher() {
         this.pusher = new Pusher(APP_KEY, {
             authEndpoint: "/pusher/auth",
             cluster: "ap2",
             auth: {
                 params: this.user.id,
-                header: {
+                headers: {
                     "X-CSRF-Token": window.csrfToken
                 }
             }
@@ -90,14 +98,17 @@ export default class App extends Component {
         this.channel.bind(`client-signal-${this.user.id}`, signal => {
             let peer = this.peers[signal.userId];
 
+            // if peer is not already exists, we got an incoming call
             if (peer === undefined) {
                 this.setState({ otherUserId: signal.userId });
                 peer = this.startPeer(signal.userId, false);
             }
-        });
-    };
 
-    startPeer = (userId, initiator) => {
+            peer.signal(signal.data);
+        });
+    }
+
+    startPeer(userId, initiator = true) {
         const peer = new Peer({
             initiator,
             stream: this.user.stream,
@@ -107,7 +118,7 @@ export default class App extends Component {
         peer.on("signal", data => {
             this.channel.trigger(`client-signal-${userId}`, {
                 type: "signal",
-                useId: this.user.id,
+                userId: this.user.id,
                 data: data
             });
         });
@@ -118,6 +129,7 @@ export default class App extends Component {
             } catch (e) {
                 this.userVideo.src = URL.createObjectURL(stream);
             }
+
             this.userVideo.play();
         });
 
@@ -126,13 +138,16 @@ export default class App extends Component {
             if (peer !== undefined) {
                 peer.destroy();
             }
+
             this.peers[userId] = undefined;
         });
-    };
 
-    callTo = userId => {
+        return peer;
+    }
+
+    callTo(userId) {
         this.peers[userId] = this.startPeer(userId);
-    };
+    }
 
     allow = (
         <>
@@ -178,7 +193,7 @@ export default class App extends Component {
     render() {
         return (
             <Button>
-                <Modal>{this.state.hasMedia === false ? this.err : this.allow}</Modal>
+                <Modal>{this.allow}</Modal>
             </Button>
         );
     }

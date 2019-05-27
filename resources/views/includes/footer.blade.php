@@ -99,7 +99,7 @@
     // Select initiate
     $(document).ready(function() {
       $('.mdb-select').materialSelect();
-      $('.timepicker').pickatime({});
+      $('#timepicker').pickatime({});
       $('.datepicker').pickadate( {
         min:true
       });

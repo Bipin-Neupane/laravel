@@ -55,3 +55,4 @@ Route::get('/my_profile', 'HomeController@profile')->name('my_profile');
 
 Route::post('/profile/patient/{cat_email}', 'ConfirmController@confirm')->name('confirm');
 
+Route::post('/pusher/auth', 'HomeController@authenticate');
