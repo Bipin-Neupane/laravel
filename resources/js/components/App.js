@@ -34,7 +34,7 @@ export default class App extends Component {
 
         this.state = {
             hasMedia: false,
-            otherUserId: null
+            otherUserId: false
         };
 
         this.user = window.user;
@@ -73,11 +73,12 @@ export default class App extends Component {
     };
 
     stop = () => {
-        this.connect();
+        // this.connect();
         this.setState({ hasMedia: null });
         if (localStream.getVideoTracks) {
             localStream.getVideoTracks()[0].stop();
             this.myVideo.src = "";
+            this.userVideo.src = "";
         }
     };
 
@@ -124,6 +125,7 @@ export default class App extends Component {
         });
 
         peer.on("stream", stream => {
+            this.setState({ otherUserId: true });
             try {
                 this.userVideo.srcObject = stream;
             } catch (e) {

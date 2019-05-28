@@ -43130,8 +43130,7 @@ function (_Component) {
     })));
 
     _defineProperty(_assertThisInitialized(_this), "stop", function () {
-      _this.connect();
-
+      // this.connect();
       _this.setState({
         hasMedia: null
       });
@@ -43139,6 +43138,7 @@ function (_Component) {
       if (localStream.getVideoTracks) {
         localStream.getVideoTracks()[0].stop();
         _this.myVideo.src = "";
+        _this.userVideo.src = "";
       }
     });
 
@@ -43179,7 +43179,7 @@ function (_Component) {
 
     _this.state = {
       hasMedia: false,
-      otherUserId: null
+      otherUserId: false
     };
     _this.user = window.user;
     _this.user.stream = null;
@@ -43242,6 +43242,10 @@ function (_Component) {
         });
       });
       peer.on("stream", function (stream) {
+        _this3.setState({
+          otherUserId: true
+        });
+
         try {
           _this3.userVideo.srcObject = stream;
         } catch (e) {
