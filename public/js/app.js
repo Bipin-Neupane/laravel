@@ -43160,6 +43160,8 @@ function (_Component) {
       className: "modal-footer m-0 py-0"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "btn btn-secondary btn-sm",
+      "data-toggle": "modal",
+      "data-target": "#endVideoModal",
       "data-dismiss": "modal",
       onClick: _this.stop
     }, "Close"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {

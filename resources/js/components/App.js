@@ -171,7 +171,13 @@ export default class App extends Component {
                 <small>Close through "CLOSE" button or else it wont fully stop.</small>
             </p>
             <div className="modal-footer m-0 py-0">
-                <button className="btn btn-secondary btn-sm" data-dismiss="modal" onClick={this.stop}>
+                <button
+                    className="btn btn-secondary btn-sm"
+                    data-toggle="modal"
+                    data-target="#endVideoModal"
+                    data-dismiss="modal"
+                    onClick={this.stop}
+                >
                     Close
                 </button>
                 <button className="btn btn-primary btn-sm" onClick={this.connect}>

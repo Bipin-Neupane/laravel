@@ -239,7 +239,7 @@
                     </div>
                     <div class="md-form mt-0">
                         <input type="date" name='date' id="date" class="form-control datepicker" required>
-                        <label for="date">Select Date</label>
+                        <label for="date" style="width:100%">Select Date</label>
                     </div>
                     <div class="md-form">
                         <input type="text" name='time' id="timepicker" class="form-control timepicker" required>
@@ -300,4 +300,54 @@
     </div>
 </div>
 @endif
+<!-- Modal -->
+<div class="modal fade" id="endVideoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @if (Auth::user()->user_type === 'patient')
+                <h5 class="modal-title" id="exampleModalLabel"> Hi {{Auth::user()->name}},</h5>
+                <p class="lead"> Hope you got your problems solved!!</p>
+                <p class="py-4"> How do you rate {{$profile->first_name}}?</p>
+                <a class="btn btn-success btn-sm" href="{{route('rating', [$profile->email, 'increase'])}}"
+                    onclick="event.preventDefault(); document.getElementById('like').submit();">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <form id="like" action="{{route('rating', [$profile->email, 'increase'])}}" method="POST"
+                    style="display: none;">
+                    @csrf
+                </form>
+                <a class="btn btn-danger btn-sm" href="{{route('rating', [$profile->email, 'decrease'])}}"
+                    onclick="event.preventDefault(); document.getElementById('dislike').submit();">
+                    <i class="fas fa-thumbs-down"></i>
+                </a>
+                <form id="dislike" action="{{route('rating', [$profile->email, 'decrease'])}}" method="POST"
+                    style="display: none;">
+                    @csrf
+                </form>
+                @else
+                <h5 class="modal-title" id="exampleModalLabel"> Hi {{Auth::user()->name}},</h5>
+                <p class="lead"> Hope the meeting was fine!!</p>
+                <p class="py-4"> Is the treatment over? If yes click complete button to end the appointment
+                    permanently else discard it.</p>
+                <a class="btn btn-success btn-sm" href="{{route('complete', [$profile->email, Auth::user()->email])}}"
+                    onclick="event.preventDefault(); document.getElementById('complete').submit();">
+                    Complete
+                </a>
+                <form id="complete" action="{{route('complete', [$profile->email, Auth::user()->email])}}" method="POST"
+                    style="display: none;">
+                    @csrf
+                </form>
+                <a class="btn btn-danger btn-sm" href="{{route('prof', $profile->email)}}">Discard</a>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <strong>Video chat not done yet?</strong>
+                <?php $prof_route = Auth::user()->user_type === 'patient' ? 'profile': 'prof'; ?>
+                <a class="btn btn-secondary" href="{{route($prof_route, $profile->email)}}"> Go back </i></a>
+            </div>
+        </div>
+    </div>
+</div>
 @include('includes.footer')
