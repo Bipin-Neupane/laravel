@@ -18,9 +18,9 @@ Tech: Laravel
 #For creating admin
 Use the following code in your terminal:
 
-php artisan tinker
-$admin = new App\Admin;
-$admin->name = "<Admin Name>";
-$admin->password = bcrypt"<Your Password>";
-$admin->email = "<Your email>";
-\$admin->save();
+1. php artisan tinker
+2. $admin = new App\Admin;
+3. $admin->name = "<Admin Name>";
+4. $admin->password = bcrypt"<Your Password>";
+5. $admin->email = "<Your email>";
+6. $admin->save();
